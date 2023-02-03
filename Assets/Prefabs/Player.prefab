@@ -533,6 +533,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   centerDirection: {fileID: 0}
+  pullSystem:
+    isPulling: 0
+    pullScore: 0
+    requireScore: 20
+    decreaseAmount: 0.05
+    waitTimer: 1.5
   playerState: 0
   character: {fileID: 6675617534287204610}
   rootCharacter: {fileID: 3722862045214619100}
@@ -553,7 +559,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbd9b56f852daa446a500fc7d281e71d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 0}
   direction: {x: 0, y: 0}
 --- !u!114 &6675617533947729725
 MonoBehaviour:

@@ -116,6 +116,24 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""StickUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""5950a04a-0e6a-413d-b8c7-a5a1c53dc5a8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""StickDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""c6e16025-9da8-4ca4-96da-8c5015a547b0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -448,6 +466,28 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""LB"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""553a0d54-b124-453a-b6ee-64646d7bb859"",
+                    ""path"": ""<Gamepad>/rightStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""74b1fe83-764d-4914-80c1-c1067e6a6941"",
+                    ""path"": ""<Gamepad>/rightStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""StickDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -466,6 +506,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         m_Player_RB = m_Player.FindAction("RB", throwIfNotFound: true);
         m_Player_LT = m_Player.FindAction("LT", throwIfNotFound: true);
         m_Player_LB = m_Player.FindAction("LB", throwIfNotFound: true);
+        m_Player_StickUp = m_Player.FindAction("StickUp", throwIfNotFound: true);
+        m_Player_StickDown = m_Player.FindAction("StickDown", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -535,6 +577,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_RB;
     private readonly InputAction m_Player_LT;
     private readonly InputAction m_Player_LB;
+    private readonly InputAction m_Player_StickUp;
+    private readonly InputAction m_Player_StickDown;
     public struct PlayerActions
     {
         private @SimpleControls m_Wrapper;
@@ -549,6 +593,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         public InputAction @RB => m_Wrapper.m_Player_RB;
         public InputAction @LT => m_Wrapper.m_Player_LT;
         public InputAction @LB => m_Wrapper.m_Player_LB;
+        public InputAction @StickUp => m_Wrapper.m_Player_StickUp;
+        public InputAction @StickDown => m_Wrapper.m_Player_StickDown;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -588,6 +634,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @LB.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
                 @LB.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
                 @LB.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnLB;
+                @StickUp.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickUp;
+                @StickUp.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickUp;
+                @StickUp.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickUp;
+                @StickDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
+                @StickDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
+                @StickDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -622,6 +674,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @LB.started += instance.OnLB;
                 @LB.performed += instance.OnLB;
                 @LB.canceled += instance.OnLB;
+                @StickUp.started += instance.OnStickUp;
+                @StickUp.performed += instance.OnStickUp;
+                @StickUp.canceled += instance.OnStickUp;
+                @StickDown.started += instance.OnStickDown;
+                @StickDown.performed += instance.OnStickDown;
+                @StickDown.canceled += instance.OnStickDown;
             }
         }
     }
@@ -638,5 +696,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         void OnRB(InputAction.CallbackContext context);
         void OnLT(InputAction.CallbackContext context);
         void OnLB(InputAction.CallbackContext context);
+        void OnStickUp(InputAction.CallbackContext context);
+        void OnStickDown(InputAction.CallbackContext context);
     }
 }

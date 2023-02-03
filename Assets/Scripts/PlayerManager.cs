@@ -11,10 +11,18 @@ public class PlayerManager : MonoBehaviour
 
     void OnPlayerJoined(PlayerInput playerInput)
     {
+        // Add new player
         players.Add(playerInput);
+
+        // Change object name
         playerInput.gameObject.name = "Player " + playerInput.playerIndex;
+
+        // Set transfrom center direction for moving correctly
         playerInput.GetComponent<PlayerController>().centerDirection = centerDirection;
+
+        // Set spawn position
         playerInput.transform.position = spawnPoints[playerInput.playerIndex].position;
+
         Debug.Log(string.Format("PlayerInput {0} Joined", playerInput.playerIndex));
     }
 }

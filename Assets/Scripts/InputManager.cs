@@ -69,4 +69,14 @@ public class InputManager : MonoBehaviour
     {
         //RB = value.isPressed;
     }
+
+    public void OnStickUp(InputValue value)
+    {
+        playerController.Pull();
+    }
+
+    public void OnStickDown(InputValue value)
+    {
+        playerController.Pull();
+    }
 }
