@@ -30,6 +30,8 @@ public class AbilityController : MonoBehaviour
                 currentMP -= abilitys[_skillIndex].MPCost;
 
                 StartCoroutine(abilitys[_skillIndex].CooldownCounting(abilityUIManager.abilityUIs[_skillIndex]));
+            
+                // Cast Skill Here
             }
         }
     }

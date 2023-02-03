@@ -37,7 +37,12 @@ public class EnemyController : MonoBehaviour
         {
             if (wandering)
             {
-                agent.SetDestination(transform.position + new Vector3(Random.Range(-radius, radius), 0, Random.Range(-radius, radius)));
+                int ranX = Random.Range(0, 2);
+                ranX = ranX == 1 ? 1 : -1;
+                int ranZ = Random.Range(0, 2);
+                ranZ = ranZ == 1 ? 1 : -1;
+
+                agent.SetDestination(transform.position + new Vector3(radius * ranX, 0, radius * ranZ));
             }
             yield return new WaitForSeconds(randomWanderTime);
         }
@@ -82,7 +87,7 @@ public class EnemyController : MonoBehaviour
             {
                 countReWanderTime -= Time.deltaTime;
 
-                if(countReWanderTime <= 0)
+                if (countReWanderTime <= 0)
                 {
                     countReWanderTime = 0;
                     wandering = true;
