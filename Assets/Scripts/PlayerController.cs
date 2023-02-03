@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput => GetComponent<PlayerInput>();
+    InputManager inputManager => GetComponent<InputManager>();
+
     [HideInInspector] public Transform centerDirection;
 
     [Header("State")]
@@ -23,17 +25,6 @@ public class PlayerController : MonoBehaviour
     public bool movable;
     public bool rotatable;
 
-    [Header("Input")]
-    [SerializeField] private Vector2 direction;
-    // [SerializeField] private bool A;
-    // [SerializeField] private bool B;
-    // [SerializeField] private bool X;
-    // [SerializeField] private bool Y;
-    // [SerializeField] private bool RT;
-    // [SerializeField] private bool RB;
-    // [SerializeField] private bool LT;
-    // [SerializeField] private bool LB;
-
     private void Start()
     {
         StateUpdate(PlayerState.MoveState);
@@ -42,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
     public void Update()
     {
-        Move(direction);
+        Move(inputManager.direction);
         Rotate();
     }
 
@@ -92,11 +83,11 @@ public class PlayerController : MonoBehaviour
         if (!rotatable)
             return;
 
-        var move = Quaternion.Euler(0, centerDirection.eulerAngles.y, 0) * new Vector3(direction.x, 0, direction.y);
+        var move = Quaternion.Euler(0, centerDirection.eulerAngles.y, 0) * new Vector3(inputManager.direction.x, 0, inputManager.direction.y);
         transform.LookAt(transform.position + move);
     }
 
-    private void ActiveShootingArea()
+    public void SkillA()
     {
         if (playerState == PlayerState.MoveState)
         {
@@ -104,16 +95,11 @@ public class PlayerController : MonoBehaviour
         }
         else if (playerState == PlayerState.ShootState)
         {
-            StateUpdate(PlayerState.MoveState);
-        }
-    }
-
-    private void Shoot()
-    {
-        if (playerState == PlayerState.ShootState)
-        {
-            SetRotatable(false);
-            StartCoroutine(ActiveRoot());
+            if (playerState == PlayerState.ShootState)
+            {
+                SetRotatable(false);
+                StartCoroutine(ActiveRoot());
+            }
         }
 
         IEnumerator ActiveRoot()
@@ -124,59 +110,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    #region PlayerActions
-    public void OnMove(InputValue value)
+    public void SkillB()
     {
-        direction = value.Get<Vector2>();
+
     }
 
-    public void OnLook(InputValue value)
+    public void SkillX()
     {
+
     }
 
-    public void OnA(InputValue value)
+    public void SkillY()
     {
-        //A = value.isPressed;
 
-        ActiveShootingArea();
     }
-
-    public void OnB(InputValue value)
-    {
-        //B = value.isPressed;
-    }
-
-    public void OnX(InputValue value)
-    {
-        //X = value.isPressed;
-
-        Shoot();
-    }
-
-    public void OnY(InputValue value)
-    {
-        //Y = value.isPressed;
-    }
-
-    public void OnLT(InputValue value)
-    {
-        //LT = value.isPressed;
-    }
-
-    public void OnLB(InputValue value)
-    {
-        //LT = value.isPressed;
-    }
-
-    public void OnRT(InputValue value)
-    {
-        //RT = value.isPressed;
-    }
-
-    public void OnRB(InputValue value)
-    {
-        //RB = value.isPressed;
-    }
-    #endregion
 }
 public enum PlayerState { MoveState, ShootState };
