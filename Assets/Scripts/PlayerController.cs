@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
         // Create Object System
         pullSystem = new PullSystem(this);
 
-        // Set first state to move
+        // Set first state to move 
         StateUpdate(PlayerState.MoveState);
     }
 
