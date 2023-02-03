@@ -12,10 +12,12 @@ public class EnemyController : MonoBehaviour
 
     public float randomWanderTime = 1f;
     public float reWanderTime = 2f;
+
+    private float countReWanderTime = 0f;
+
     NavMeshAgent agent;
 
     private bool wandering = true;
-    private Coroutine ReWanderIE;
 
     private void Awake()
     {
@@ -24,7 +26,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(Wander());
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         FindPlayer();
     }
@@ -39,12 +41,6 @@ public class EnemyController : MonoBehaviour
             }
             yield return new WaitForSeconds(randomWanderTime);
         }
-    }
-
-    IEnumerator ReWander()
-    {
-        yield return new WaitForSeconds(reWanderTime);
-        wandering = true;
     }
 
     public void FindPlayer()
@@ -72,19 +68,26 @@ public class EnemyController : MonoBehaviour
             agent.SetDestination(transform.position - pointToRunAway);
 
             wandering = false;
+
+            if (countReWanderTime < reWanderTime)
+            {
+                countReWanderTime = reWanderTime;
+            }
         }
         else
         {
-            if (playerInArea)
-            {
-                if (ReWanderIE != null)
-                {
-                    StopCoroutine(ReWanderIE);
-                }
-                ReWanderIE = StartCoroutine(ReWander());
-            }
-
             playerInArea = false;
+
+            if (countReWanderTime > 0)
+            {
+                countReWanderTime -= Time.deltaTime;
+
+                if(countReWanderTime <= 0)
+                {
+                    countReWanderTime = 0;
+                    wandering = true;
+                }
+            }
         }
     }
 }

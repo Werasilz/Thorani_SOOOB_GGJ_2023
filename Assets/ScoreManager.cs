@@ -37,6 +37,8 @@ public class PlayerScore
     {
         score += _score;
 
+        
+
         if (score >= 25)
             playerState = 5;
         else if (score >= 16)
