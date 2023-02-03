@@ -147,20 +147,22 @@ public class PlayerController : MonoBehaviour
         else if (playerState == PlayerState.ShootState)
         {
             rotatable = false;
-            StartCoroutine(ActiveRoot());
-        }
-
-        IEnumerator ActiveRoot()
-        {
-            // Play animation
             root.SetTrigger("ActiveRoot");
 
-            // Waiting
-            yield return new WaitForSeconds(1f);
-
-            // Reset to move state
-            StateUpdate(PlayerState.MoveState);
+            //StartCoroutine(ActiveRoot());
         }
+
+        // IEnumerator ActiveRoot()
+        // {
+        //     // Play animation
+        //     root.SetTrigger("ActiveRoot");
+
+        //     // Waiting
+        //     yield return new WaitForSeconds(1f);
+
+        //     // Reset to move state
+        //     StateUpdate(PlayerState.MoveState);
+        // }
     }
 
     public void SkillB()

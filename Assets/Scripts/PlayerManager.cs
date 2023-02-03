@@ -8,6 +8,7 @@ public class PlayerManager : MonoBehaviour
     public Transform centerDirection;
     public List<PlayerInput> players = new List<PlayerInput>();
     public Transform[] spawnPoints;
+    public AbilityUIManager[] abilityUIManagers;
 
     void OnPlayerJoined(PlayerInput playerInput)
     {
@@ -17,8 +18,14 @@ public class PlayerManager : MonoBehaviour
         // Change object name
         playerInput.gameObject.name = "Player " + playerInput.playerIndex;
 
-        // Set transfrom center direction for moving correctly
+        // Set transform center direction for moving correctly
         playerInput.GetComponent<PlayerController>().centerDirection = centerDirection;
+
+        // Set ability manager
+        playerInput.GetComponent<AbilityController>().abilityUIManager = abilityUIManagers[playerInput.playerIndex];
+        playerInput.GetComponent<AbilityController>().abilityUIManager.abilityUIs[0].EnableSkill();
+        playerInput.GetComponent<AbilityController>().abilityUIManager.abilityUIs[1].EnableSkill();
+        playerInput.GetComponent<AbilityController>().abilityUIManager.abilityUIs[2].EnableSkill();
 
         // Set spawn position
         playerInput.transform.position = spawnPoints[playerInput.playerIndex].position;

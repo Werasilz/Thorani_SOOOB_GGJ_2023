@@ -31,6 +31,11 @@ public class EnemyController : MonoBehaviour
         FindPlayer();
     }
 
+    public void GetCatch()
+    {
+        agent.isStopped = true;
+    }
+
     IEnumerator Wander()
     {
         while (true)
