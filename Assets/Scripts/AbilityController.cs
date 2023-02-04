@@ -32,6 +32,7 @@ public class AbilityController : MonoBehaviour
                 StartCoroutine(abilitys[_skillIndex].CooldownCounting(abilityUIManager.abilityUIs[_skillIndex]));
             
                 // Cast Skill Here
+                
             }
         }
     }

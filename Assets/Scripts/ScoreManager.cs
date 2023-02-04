@@ -37,18 +37,10 @@ public class PlayerScore
     {
         score += _score;
 
-        
+        playerState = (int)Mathf.Sqrt((float)score);
 
-        if (score >= 25)
+        if (playerState > 5)
             playerState = 5;
-        else if (score >= 16)
-            playerState = 4;
-        else if (score >= 9)
-            playerState = 3;
-        else if (score >= 4)
-            playerState = 2;
-        else
-            playerState = 1;
     }
 
 }
