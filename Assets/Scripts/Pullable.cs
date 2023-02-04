@@ -22,10 +22,11 @@ public class Pullable : MonoBehaviour
             playerController.StateUpdate(PlayerState.PullState);
 
             // Disable collider
-            playerController.SetActiveCollider(false);
+            playerController.rootSkill.SetActiveCollider(false);
 
             // Attach this enemy to root
-            transform.parent = playerController.pullSystem.attachTransform.transform;
+            // transform.parent = playerController.pullSystem.attachTransform.transform;
+            transform.parent = playerController.rootSkill.rootSpinCollider.transform;
 
             // Send pullDistance to player
             playerController.pullSystem.pullDistance = playerController.pullSystem.defaultDistance;
@@ -46,6 +47,19 @@ public class Pullable : MonoBehaviour
             enemyController.transform.localPosition = Vector3.zero;
             enemyController.transform.LookAt(playerController.transform.position);
             enemyController.transform.localEulerAngles = new Vector3(0, 180, 0);
+        }
+
+        if (other.gameObject.tag == "RootLine")
+        {
+            Animation animation = other.GetComponentInChildren<Animation>();
+            RootSkill rootSkill = other.GetComponentInParent<RootSkill>();
+
+            // Reverse root animation
+            if (rootSkill && animation)
+            {
+                animation.GetComponentInParent<SphereCollider>().enabled = false;
+                rootSkill.ReverseSingleRootLine(animation);
+            }
         }
     }
 }

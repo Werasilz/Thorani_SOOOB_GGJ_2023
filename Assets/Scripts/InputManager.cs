@@ -32,7 +32,19 @@ public class InputManager : MonoBehaviour
     {
         //A = value.isPressed;
 
-        playerController.SkillA();
+        // Change move state to shoot state
+        if (playerController.playerState == PlayerState.MoveState)
+        {
+            if (!playerController.abilityController.abilitys[0].isCooldown)
+            {
+                playerController.StateUpdate(PlayerState.ShootState);
+            }
+        }
+        // Start active root
+        else if (playerController.playerState == PlayerState.ShootState)
+        {
+            playerController.abilityController.CastSkill(0);
+        }
     }
 
     public void OnB(InputValue value)

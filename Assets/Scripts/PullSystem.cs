@@ -33,7 +33,7 @@ public class PullSystem
             pullDistance += decreaseAmount;
 
             // Reset
-            if (pullDistance >= defaultDistance + 3)
+            if (pullDistance >= defaultDistance + 1.5f)
             {
                 Detach();
                 ResetPull();
@@ -46,8 +46,9 @@ public class PullSystem
         // Free that Enemy
         if (attached)
         {
-            attachTransform.GetComponentInChildren<EnemyController>().EnableAgent(true);
-            attachTransform.transform.GetChild(0).parent = null;
+            playerController.rootSkill.rootSpinCollider.GetComponentInChildren<EnemyController>().EnableAgent(true);
+            playerController.rootSkill.rootSpinCollider.transform.GetChild(1).parent = null;
+            playerController.rootSkill.StartReverseRoot();
         }
     }
 
@@ -58,8 +59,10 @@ public class PullSystem
         {
             ResetPull();
 
+            playerController.rootSkill.animations.Clear();
+
             // Destroy enemy
-            Object.Destroy(attachTransform.transform.GetChild(0).gameObject);
+            Object.Destroy(playerController.rootSkill.rootSpinCollider.gameObject);
         }
     }
 
@@ -80,10 +83,6 @@ public class PullSystem
 
         // Change to move state
         playerController.StateUpdate(PlayerState.MoveState);
-
-        // Reset transform
-        attachTransform.transform.localPosition = new Vector3(0, 0, defaultDistance);
-        attachTransform.transform.localRotation = Quaternion.identity;
     }
 
     public IEnumerator TimeCounting()
@@ -119,7 +118,7 @@ public class PullSystem
     {
         if (isPulling)
         {
-            attachTransform.position = playerController.transform.position + ((playerController.transform.forward).normalized * pullDistance);
+            playerController.rootSkill.rootSpinCollider.transform.position = playerController.transform.position + ((playerController.transform.forward).normalized * pullDistance);
         }
     }
 }

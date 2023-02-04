@@ -131,7 +131,6 @@ public class EnemyController : MonoBehaviour
             {
                 onGround = true;
 
-                Debug.Log("Trigger");
                 EnableAgent(true);
 
                 SetWander();

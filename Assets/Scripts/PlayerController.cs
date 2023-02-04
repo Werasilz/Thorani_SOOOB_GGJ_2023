@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput => GetComponent<PlayerInput>();
     InputManager inputManager => GetComponent<InputManager>();
+    [HideInInspector] public AbilityController abilityController => GetComponent<AbilityController>();
     [HideInInspector] public Transform centerDirection;
 
     [Header("System")]
@@ -21,11 +22,10 @@ public class PlayerController : MonoBehaviour
     public GameObject rootCharacter;
     public GameObject shootingArea;
 
-    [Header("Collider")]
-    public Collider[] rootColliders;
-
-    [Header("Animator")]
-    public Animator root;
+    [Header("Root Skill")]
+    public GameObject rootSkillPrefab;
+    public Transform rootSpawnPoint;
+    public RootSkill rootSkill;
 
     [Header("Status")]
     public float moveSpeed;
@@ -38,9 +38,6 @@ public class PlayerController : MonoBehaviour
 
         // Set first state to move 
         StateUpdate(PlayerState.MoveState);
-
-        // Disable collider
-        SetActiveCollider(false);
     }
 
     public void Update()
@@ -61,7 +58,10 @@ public class PlayerController : MonoBehaviour
         // Enemy pull back
         pullSystem.PullBack();
 
-        pullSystem.attachTransform.LookAt(transform.position);
+        if (rootSkill != null && rootSkill.rootSpinCollider != null)
+        {
+            rootSkill.rootSpinCollider.transform.LookAt(transform.position);
+        }
     }
 
     public void StateUpdate(PlayerState newPlayerState)
@@ -129,14 +129,6 @@ public class PlayerController : MonoBehaviour
         transform.LookAt(transform.position + move);
     }
 
-    public void SetActiveCollider(bool value)
-    {
-        foreach (var collider in rootColliders)
-        {
-            collider.enabled = value;
-        }
-    }
-
     public void ActivePull()
     {
         // Set to pull state
@@ -160,27 +152,18 @@ public class PlayerController : MonoBehaviour
 
     public void SkillA()
     {
-
-
-        // Change move state to shoot state
-        if (playerState == PlayerState.MoveState)
-        {
-            StateUpdate(PlayerState.ShootState);
-        }
-        // Start active root
-        else if (playerState == PlayerState.ShootState)
-        {
-            rotatable = false;
-            StartCoroutine(ActiveRoot());
-        }
+        rotatable = false;
+        shootingArea.SetActive(false);
+        StartCoroutine(ActiveRoot());
 
         IEnumerator ActiveRoot()
         {
-            // Enable collider
-            SetActiveCollider(true);
+            GameObject newRootSkill = Instantiate(rootSkillPrefab, rootSpawnPoint);
+            newRootSkill.SetActive(true);
+            rootSkill = newRootSkill.GetComponent<RootSkill>();
 
-            // Play animation
-            root.SetTrigger("ActiveRoot");
+            // Spawn root
+            rootSkill.StartSpawnRoot();
 
             // Waiting
             yield return new WaitForSeconds(1f);
@@ -189,7 +172,8 @@ public class PlayerController : MonoBehaviour
             if (!pullSystem.attached)
             {
                 // Disable collider
-                SetActiveCollider(false);
+                rootSkill.StartReverseRoot();
+                rootSkill = null;
 
                 StateUpdate(PlayerState.MoveState);
             }

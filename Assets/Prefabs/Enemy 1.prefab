@@ -49,6 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53efaec236098bf40a7c5900013788e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySkinController:
+    body: {fileID: 7598404365559885687}
+    equipments: []
   maxHP: 0
   currentHP: 0
   radius: 4
@@ -245,6 +248,12 @@ Animator:
 --- !u!4 &5196485234856518847 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c91a68006f5f074dad66a0e81d8270b,
+    type: 3}
+  m_PrefabInstance: {fileID: 5735095207273300820}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &7598404365559885687 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2802877479632202787, guid: 6c91a68006f5f074dad66a0e81d8270b,
     type: 3}
   m_PrefabInstance: {fileID: 5735095207273300820}
   m_PrefabAsset: {fileID: 0}

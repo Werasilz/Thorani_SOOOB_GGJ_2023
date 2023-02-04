@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AbilityController : MonoBehaviour
 {
+    PlayerController playerController => GetComponent<PlayerController>();
+
     public float maxMP = 100;
     public float currentMP;
     public float regenMPPerSecond = 2f;
@@ -30,9 +32,20 @@ public class AbilityController : MonoBehaviour
                 currentMP -= abilitys[_skillIndex].MPCost;
 
                 StartCoroutine(abilitys[_skillIndex].CooldownCounting(abilityUIManager.abilityUIs[_skillIndex]));
-            
+
                 // Cast Skill Here
-                
+                switch (_skillIndex)
+                {
+                    case 0:
+                        playerController.SkillA();
+                        break;
+                    case 1:
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                }
             }
         }
     }
