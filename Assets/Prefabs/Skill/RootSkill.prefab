@@ -141,7 +141,7 @@ MonoBehaviour:
   randomPosX: {x: -0.5, y: 0.5}
   spawnAmount: 7
   offsetLength: 1.2
-  spawnDelay: 0.1
+  spawnDelay: 0.05
   reverseDelay: 1.5
   rootSpinCollider: {fileID: 0}
   rootLinePrefab: {fileID: 3482003804786012269}

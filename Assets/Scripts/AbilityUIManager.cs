@@ -26,11 +26,11 @@ public class AbilityUI
             skill_fill.enabled = true;
         }
 
-        cooldownText.text = _currentCooldown.ToString("F0");
+        cooldownText.text = _currentCooldown.ToString("F1");
         skill_fill.fillAmount = _currentCooldown / _maxCooldown;
     }
 
-    public void EnableSkill()
+    public void EnableSkillIcon()
     {
         skill_lock.enabled = false;
         skill_black.enabled = false;

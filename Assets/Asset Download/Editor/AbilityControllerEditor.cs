@@ -13,9 +13,9 @@ public class AbilityControllerEditor : Editor
 
         if (GUILayout.Button("Enable All Skill"))
         {
-            abilityController.abilityUIManager.abilityUIs[0].EnableSkill();
-            abilityController.abilityUIManager.abilityUIs[1].EnableSkill();
-            abilityController.abilityUIManager.abilityUIs[2].EnableSkill();
+            abilityController.abilityUIManager.abilityUIs[0].EnableSkillIcon();
+            abilityController.abilityUIManager.abilityUIs[1].EnableSkillIcon();
+            abilityController.abilityUIManager.abilityUIs[2].EnableSkillIcon();
         }
 
         if (GUILayout.Button("Use Skill A"))

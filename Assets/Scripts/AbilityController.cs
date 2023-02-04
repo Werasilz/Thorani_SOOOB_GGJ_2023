@@ -25,6 +25,9 @@ public class AbilityController : MonoBehaviour
 
     public void CastSkill(int _skillIndex)
     {
+        if (!abilitys[_skillIndex].isUnlock)
+            return;
+
         if (currentMP > abilitys[_skillIndex].MPCost)
         {
             if (abilitys[_skillIndex].isCooldown == false)
@@ -55,6 +58,7 @@ public class AbilityController : MonoBehaviour
 [System.Serializable]
 public class AbilitySetting
 {
+    public bool isUnlock = false;
     public float cooldown = 10f;
     public float countCooldown;
     public bool isCooldown;
@@ -74,7 +78,7 @@ public class AbilitySetting
             if (countCooldown <= 0)
             {
                 isCooldown = false;
-                _abilityUI.EnableSkill();
+                _abilityUI.EnableSkillIcon();
             }
 
             yield return null;

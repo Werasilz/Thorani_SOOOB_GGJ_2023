@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b6a2a387e01cae419215c19c578fae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decreaseAmount: 0.005
+  decreaseAmount: 0.0025
   pullBackDelay: 0.75
 --- !u!136 &5113798587446666622
 CapsuleCollider:
