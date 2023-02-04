@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RootSkill : MonoBehaviour
 {
+    [Header("Owner")]
+    public PlayerInput playerInput;
+
     [Header("Spawn Settings")]
     private List<Vector3> spawnPos;
     [SerializeField] private Vector2 randomPosX;
@@ -87,13 +91,7 @@ public class RootSkill : MonoBehaviour
     {
         SetActiveCollider(false);
 
-        foreach (var anim in animations)
-        {
-            if (anim != null)
-            {
-                anim.transform.parent.parent = null;
-            }
-        }
+        gameObject.transform.parent = null;
 
         for (int i = animations.Count - 1; i >= 0; i--)
         {
@@ -129,10 +127,13 @@ public class RootSkill : MonoBehaviour
         Destroy(animation.transform.parent.gameObject, 1);
     }
 
+    // Pull enemy down
     public void ReverseSingleRootSpin(Animation animation)
     {
         animation.clip = reverseRootSpin;
         animation.Play();
+
+        PlayerManager.instance.AddPlayerScore(playerInput, 1);
 
         Destroy(animation.transform.parent.gameObject, 1);
     }

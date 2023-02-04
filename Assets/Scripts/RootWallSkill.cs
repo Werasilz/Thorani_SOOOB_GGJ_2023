@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class RootWallSkill : MonoBehaviour
 {
+    [Header("Owner")]
+    public PlayerInput playerInput;
+
     [Header("Spawn Settings")]
     private List<Vector3> spawnPos;
     [SerializeField] private Vector2 randomPosX;
@@ -39,6 +43,8 @@ public class RootWallSkill : MonoBehaviour
             Vector3 newPos = new Vector3(transform.localPosition.x + (Random.Range(randomPosX.x, randomPosX.y)), transform.localPosition.y, (transform.localPosition.z + i) * offsetLength);
             spawnPos.Add(newPos);
         }
+
+        spawnPos.RemoveAt(0);
 
         for (int i = 0; i < spawnPos.Count; i++)
         {

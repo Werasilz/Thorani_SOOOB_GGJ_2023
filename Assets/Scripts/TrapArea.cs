@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TrapArea : MonoBehaviour
 {
+    [Header("Owner")]
+    public PlayerInput playerInput;
+
     public GameObject trapPrefab;
     public float duration;
     public int spawnTrapLimit;
@@ -31,8 +35,9 @@ public class TrapArea : MonoBehaviour
             GameObject trapClone = Instantiate(trapPrefab);
             trapClone.transform.position = transform.position + new Vector3(randomPoint.x, 0, randomPoint.y);
 
-            trapSkillYs.Add(trapClone.GetComponent<TrapSkillY>());
-
+            TrapSkillY trapSkillY = trapClone.GetComponent<TrapSkillY>();
+            trapSkillY.playerInput = playerInput;
+            trapSkillYs.Add(trapSkillY);
             countSpawnTrap++;
 
             yield return new WaitForSeconds(2f);

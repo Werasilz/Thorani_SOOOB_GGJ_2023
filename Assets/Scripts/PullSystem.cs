@@ -63,6 +63,8 @@ public class PullSystem
 
             playerController.rootSkill.animations.Clear();
 
+            // Move enemy to root spin
+            playerController.rootSkill.rootSpinCollider.transform.GetChild(1).parent = playerController.rootSkill.rootSpinCollider.transform.GetChild(0);
             // Destroy enemy
             Animation rootSpinAnim = playerController.rootSkill.rootSpinCollider.GetComponentInChildren<Animation>();
             playerController.rootSkill.ReverseSingleRootSpin(rootSpinAnim);

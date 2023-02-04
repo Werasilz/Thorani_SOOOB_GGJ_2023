@@ -170,6 +170,7 @@ public class PlayerController : MonoBehaviour
         {
             GameObject newRootSkill = Instantiate(rootSkillPrefab, rootSpawnPoint);
             rootSkill = newRootSkill.GetComponent<RootSkill>();
+            rootSkill.playerInput = playerInput;
 
             // Spawn root
             rootSkill.StartSpawnRoot();
@@ -196,6 +197,7 @@ public class PlayerController : MonoBehaviour
         // Spawn root
         RootWallSkill rootWallSkill = newRootWallSkill.GetComponent<RootWallSkill>();
         rootWallSkill.StartSpawnRootWall();
+        rootWallSkill.playerInput = playerInput;
 
         newRootWallSkill.transform.parent = null;
     }
@@ -207,6 +209,7 @@ public class PlayerController : MonoBehaviour
 
         // Spawn root
         TrapArea trapArea = newRootTrapSkill.GetComponent<TrapArea>();
+        trapArea.playerInput = playerInput;
         trapArea.StartSpawnTrap();
 
         // newRootTrapSkill.transform.parent = null;

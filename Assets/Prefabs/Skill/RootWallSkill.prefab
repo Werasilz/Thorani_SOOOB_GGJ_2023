@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6927337435888298337}
   - component: {fileID: 3811416682797462977}
   - component: {fileID: 862592638523569200}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thron03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3344761011411371902}
   - component: {fileID: 3979976640248812464}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TreeRoot_Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -180,11 +180,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd992c4a5592574f864a8aa20ff23fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
   randomPosX: {x: -1, y: 1}
   spawnAmount: 7
   offsetLength: 2
   spawnDelay: 0.05
-  reverseDelay: 3
+  reverseDelay: 5
   rootLinePrefab: {fileID: 3168037534341342441}
   animations: []
   normalRootLine: {fileID: 7400000, guid: f273a7bf74461db43ad063bcd837d82d, type: 2}
@@ -199,8 +200,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2302358004906149650}
-  - component: {fileID: 3017485513542514887}
-  m_Layer: 0
+  - component: {fileID: 3532559578592021121}
+  m_Layer: 6
   m_Name: TreeRoot_Line
   m_TagString: RootWall
   m_Icon: {fileID: 0}
@@ -223,19 +224,19 @@ Transform:
   m_Father: {fileID: 3017485512282170901}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &3017485513542514887
-SphereCollider:
+--- !u!65 &3532559578592021121
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3168037534341342441}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2, z: 2}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &3479092997216188438
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,7 +248,7 @@ GameObject:
   - component: {fileID: 7028541651085918014}
   - component: {fileID: 7466384920481646855}
   - component: {fileID: 921905936708940641}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thron04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +331,7 @@ GameObject:
   - component: {fileID: 411891461924542474}
   - component: {fileID: 5350320493002433250}
   - component: {fileID: 9130375647833193922}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Thron01
   m_TagString: Untagged
   m_Icon: {fileID: 0}

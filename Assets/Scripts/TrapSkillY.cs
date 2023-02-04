@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TrapSkillY : MonoBehaviour
 {
+    [Header("Owner")]
+    public PlayerInput playerInput;
+
     public GameObject startModel;
     public GameObject finalModel;
 
@@ -65,6 +69,7 @@ public class TrapSkillY : MonoBehaviour
             enemy.transform.SetParent(finalModel.GetComponentInChildren<Animator>().transform);
 
             // add score
+            PlayerManager.instance.AddPlayerScore(playerInput, 1);
         }
         else
         {

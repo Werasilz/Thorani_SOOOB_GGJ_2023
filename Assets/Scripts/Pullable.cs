@@ -65,4 +65,24 @@ public class Pullable : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "RootLine")
+        {
+            // Check this enemy is attach to player
+            if (!GetComponentInParent<PlayerController>())
+                return;
+
+            Animation animation = other.GetComponentInChildren<Animation>();
+            RootSkill rootSkill = other.GetComponentInParent<RootSkill>();
+
+            // Reverse root animation
+            if (rootSkill && animation)
+            {
+                animation.GetComponentInParent<SphereCollider>().enabled = false;
+                rootSkill.ReverseSingleRootLine(animation);
+            }
+        }
+    }
 }
