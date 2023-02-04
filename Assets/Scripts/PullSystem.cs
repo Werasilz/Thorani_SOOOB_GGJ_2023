@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [System.Serializable]
 public class PullSystem
@@ -31,6 +32,7 @@ public class PullSystem
         {
             // Decrease pull score
             pullDistance += decreaseAmount;
+            playerController.inputManager.ActiveGamepadMotor();
 
             // Reset
             if (pullDistance >= defaultDistance + 1.5f)
@@ -62,7 +64,9 @@ public class PullSystem
             playerController.rootSkill.animations.Clear();
 
             // Destroy enemy
-            Object.Destroy(playerController.rootSkill.rootSpinCollider.gameObject);
+            //Object.Destroy(playerController.rootSkill.rootSpinCollider.gameObject);
+            Animation rootSpinAnim = playerController.rootSkill.rootSpinCollider.GetComponentInChildren<Animation>();
+            playerController.rootSkill.ReverseSingleRootSpin(rootSpinAnim);
         }
     }
 

@@ -129,6 +129,14 @@ public class RootSkill : MonoBehaviour
         Destroy(animation.transform.parent.gameObject, 1);
     }
 
+    public void ReverseSingleRootSpin(Animation animation)
+    {
+        animation.clip = reverseRootSpin;
+        animation.Play();
+
+        Destroy(animation.transform.parent.gameObject, 1);
+    }
+
     private void OnDrawGizmos()
     {
         if (!Application.isPlaying)

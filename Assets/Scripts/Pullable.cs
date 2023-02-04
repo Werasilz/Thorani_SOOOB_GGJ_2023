@@ -9,7 +9,7 @@ public class Pullable : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Root")
+        if (other.gameObject.tag == "RootSpin")
         {
             EnemyController enemyController = transform.GetComponentInParent<EnemyController>();
             if (!enemyController.agent.enabled) return;
@@ -50,6 +50,10 @@ public class Pullable : MonoBehaviour
 
         if (other.gameObject.tag == "RootLine")
         {
+            // Check this enemy is attach to player
+            if (!GetComponentInParent<PlayerController>())
+                return;
+
             Animation animation = other.GetComponentInChildren<Animation>();
             RootSkill rootSkill = other.GetComponentInParent<RootSkill>();
 

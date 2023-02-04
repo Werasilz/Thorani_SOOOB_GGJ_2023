@@ -82,7 +82,7 @@ public class EnemyController : MonoBehaviour
 
         foreach (var playerObject in playerObjects)
         {
-            if (playerObject.gameObject.CompareTag("Player"))
+            if (playerObject.gameObject.CompareTag("Player") || playerObject.gameObject.CompareTag("RootWall"))
             {
                 playerCount++;
                 pointToRunAway += new Vector3(playerObject.transform.position.x, 0, playerObject.transform.position.z);

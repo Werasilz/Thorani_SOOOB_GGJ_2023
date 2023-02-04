@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3017485512282170901
 Transform:
   m_ObjectHideFlags: 0
@@ -180,9 +180,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd992c4a5592574f864a8aa20ff23fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomPosX: {x: -0.25, y: 0.25}
-  spawnAmount: 8
-  offsetLength: 0.9
+  randomPosX: {x: -0.5, y: 0.5}
+  spawnAmount: 7
+  offsetLength: 1.2
   spawnDelay: 0.1
   reverseDelay: 3
   rootLinePrefab: {fileID: 3168037534341342441}
@@ -202,7 +202,7 @@ GameObject:
   - component: {fileID: 3017485513542514887}
   m_Layer: 0
   m_Name: TreeRoot_Line
-  m_TagString: RootLine
+  m_TagString: RootWall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,7 +6,7 @@ using System.Linq;
 public class PlayerController : MonoBehaviour
 {
     PlayerInput playerInput => GetComponent<PlayerInput>();
-    InputManager inputManager => GetComponent<InputManager>();
+    [HideInInspector] public InputManager inputManager => GetComponent<InputManager>();
     [HideInInspector] public AbilityController abilityController => GetComponent<AbilityController>();
     [HideInInspector] public Transform centerDirection;
 
@@ -48,6 +48,9 @@ public class PlayerController : MonoBehaviour
         // Movement
         Move(inputManager.direction);
         Rotate();
+
+        // Update gamepad motor
+        inputManager.CooldownGamepadMotor();
 
         // Decreasing score when not pulling
         pullSystem.ScoreDecreasing();
@@ -142,6 +145,7 @@ public class PlayerController : MonoBehaviour
     {
         // Add pull score
         pullSystem.PullInput();
+        inputManager.ActiveGamepadMotor();
     }
 
     public void StartDelayPullBack()
@@ -162,7 +166,6 @@ public class PlayerController : MonoBehaviour
         IEnumerator ActiveRoot()
         {
             GameObject newRootSkill = Instantiate(rootSkillPrefab, rootSpawnPoint);
-            newRootSkill.SetActive(true);
             rootSkill = newRootSkill.GetComponent<RootSkill>();
 
             // Spawn root
@@ -186,7 +189,6 @@ public class PlayerController : MonoBehaviour
     public void SkillX()
     {
         GameObject newRootWallSkill = Instantiate(rootWallSkillPrefab, rootSpawnPoint);
-        newRootWallSkill.SetActive(true);
 
         // Spawn root
         RootWallSkill rootWallSkill = newRootWallSkill.GetComponent<RootWallSkill>();

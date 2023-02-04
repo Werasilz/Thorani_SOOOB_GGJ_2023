@@ -104,4 +104,36 @@ public class InputManager : MonoBehaviour
     {
         playerController.Pull();
     }
+
+    public bool isStartMotor;
+    public float motorTimer;
+
+    public void ActiveGamepadMotor()
+    {
+        Gamepad.current.SetMotorSpeeds(0.1f, 0.2f);
+        isStartMotor = true;
+        motorTimer = 1.5f;
+    }
+
+    public void CooldownGamepadMotor()
+    {
+        if (isStartMotor)
+        {
+            motorTimer -= Time.deltaTime;
+
+            if (motorTimer <= 0)
+            {
+                motorTimer = 0;
+                isStartMotor = false;
+                Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+            }
+        }
+
+        if (!playerController.pullSystem.isPulling)
+        {
+            motorTimer = 0;
+            isStartMotor = false;
+            Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+        }
+    }
 }

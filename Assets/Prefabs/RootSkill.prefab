@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5413932665145768173}
   m_Layer: 0
   m_Name: TreeRoot_Spin
-  m_TagString: Root
+  m_TagString: RootSpin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -44,7 +44,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3482003804786012269
 GameObject:
@@ -108,7 +108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3622567897029046929
 Transform:
   m_ObjectHideFlags: 0
@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9ec663b6c78faf49a025b2a5ee65e88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randomPosX: {x: -0.25, y: 0.25}
-  spawnAmount: 8
-  offsetLength: 0.9
+  randomPosX: {x: -0.5, y: 0.5}
+  spawnAmount: 7
+  offsetLength: 1.2
   spawnDelay: 0.1
   reverseDelay: 1.5
   rootSpinCollider: {fileID: 0}
