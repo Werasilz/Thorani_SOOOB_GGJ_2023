@@ -170,7 +170,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2537392592754059788}
-  - component: {fileID: 7526463955992505027}
   m_Layer: 0
   m_Name: Root
   m_TagString: Untagged
@@ -195,19 +194,6 @@ Transform:
   m_Father: {fileID: 6675617533947729724}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7526463955992505027
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3254376571630993525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ca87c3864200c849ae9be4704b7655e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  attachTransform: {fileID: 2578797375737594863}
 --- !u!1 &3721833953159514091
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,9 +600,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   centerDirection: {fileID: 0}
   pullSystem:
+    playerController: {fileID: 0}
     isPulling: 0
+    attached: 0
     pullScore: 0
-    requireScore: 20
+    defaultDistance: 4
+    attachTransform: {fileID: 2578797375737594863}
+    pullSpeed: 3
+    requireScore: 30
     decreaseAmount: 0.05
     waitTimer: 1.5
   playerState: 0

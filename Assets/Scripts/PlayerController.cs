@@ -30,8 +30,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        // Create Object System
-        pullSystem = new PullSystem(this);
+        pullSystem.playerController = this;
 
         // Set first state to move 
         StateUpdate(PlayerState.MoveState);
@@ -48,6 +47,9 @@ public class PlayerController : MonoBehaviour
 
         // Checking when player reach the require score
         pullSystem.CheckingComplete();
+
+        // Pull target
+        pullSystem.PullingTarget();
     }
 
     public void StateUpdate(PlayerState newPlayerState)
@@ -124,7 +126,7 @@ public class PlayerController : MonoBehaviour
     public void Pull()
     {
         // Add pull score
-        pullSystem.Pull();
+        pullSystem.PullInput();
 
         // Check coroutine
         if (pullTimeCountingCoroutine != null)
@@ -147,22 +149,23 @@ public class PlayerController : MonoBehaviour
         else if (playerState == PlayerState.ShootState)
         {
             rotatable = false;
-            root.SetTrigger("ActiveRoot");
-
-            //StartCoroutine(ActiveRoot());
+            StartCoroutine(ActiveRoot());
         }
 
-        // IEnumerator ActiveRoot()
-        // {
-        //     // Play animation
-        //     root.SetTrigger("ActiveRoot");
+        IEnumerator ActiveRoot()
+        {
+            // Play animation
+            root.SetTrigger("ActiveRoot");
 
-        //     // Waiting
-        //     yield return new WaitForSeconds(1f);
+            // Waiting
+            yield return new WaitForSeconds(1f);
 
-        //     // Reset to move state
-        //     StateUpdate(PlayerState.MoveState);
-        // }
+            // Fail to pull enemy, Reset to move state
+            if (!pullSystem.attached)
+            {
+                StateUpdate(PlayerState.MoveState);
+            }
+        }
     }
 
     public void SkillB()

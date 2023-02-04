@@ -5,25 +5,23 @@ using UnityEngine;
 [System.Serializable]
 public class PullSystem
 {
-    PlayerController playerController;
+    [HideInInspector] public PlayerController playerController;
 
     [Header("Status")]
     public bool isPulling;
+    public bool attached;
     [SerializeField] private float pullScore;
 
+    [Header("Pull Transform")]
+    public float defaultDistance;
+    public Transform attachTransform;
+
     [Header("Settings")]
+    [SerializeField] private float pullSpeed;
     [SerializeField] private int requireScore;
     [SerializeField] private float decreaseAmount;
     [SerializeField] private float waitTimer;
     private bool pulled;
-
-    public PullSystem(PlayerController playerController)
-    {
-        this.playerController = playerController;
-        requireScore = 20;
-        decreaseAmount = 0.05f;
-        waitTimer = 1.5f;
-    }
 
     public void ScoreDecreasing()
     {
@@ -52,6 +50,9 @@ public class PullSystem
             // Reset pulling action
             isPulling = false;
 
+            // Reset attach enemy
+            attached = false;
+
             // Change to move state
             playerController.StateUpdate(PlayerState.MoveState);
         }
@@ -66,7 +67,7 @@ public class PullSystem
         pulled = false;
     }
 
-    public void Pull()
+    public void PullInput()
     {
         if (isPulling)
         {
@@ -75,6 +76,24 @@ public class PullSystem
 
             // Add pull score
             pullScore += 1;
+        }
+    }
+
+    public void PullingTarget()
+    {
+        if (isPulling)
+        {
+            var scaledMoveSpeed = pullSpeed * Time.deltaTime;
+            var move = Quaternion.Euler(0, playerController.centerDirection.eulerAngles.y, 0) * new Vector3(0, 0, 0.25f);
+
+            if (pullScore > 0)
+            {
+                attachTransform.localPosition -= new Vector3(0, 0, move.z * scaledMoveSpeed);
+            }
+            else
+            {
+                attachTransform.localPosition += new Vector3(0, 0, move.z * scaledMoveSpeed);
+            }
         }
     }
 }
