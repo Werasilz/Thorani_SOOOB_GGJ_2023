@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour
     [Header("Root Wall Skill")]
     public GameObject rootWallSkillPrefab;
 
+    [Header("Root Trap Skill")]
+    public GameObject rootTrapSkillPrefab;
+
     [Header("Status")]
     public float moveSpeed;
     public bool movable;
@@ -199,7 +202,14 @@ public class PlayerController : MonoBehaviour
 
     public void SkillY()
     {
+        GameObject newRootTrapSkill = Instantiate(rootTrapSkillPrefab);
+        newRootTrapSkill.transform.position = transform.position;
 
+        // Spawn root
+        TrapArea trapArea = newRootTrapSkill.GetComponent<TrapArea>();
+        trapArea.StartSpawnTrap();
+
+        // newRootTrapSkill.transform.parent = null;
     }
 }
 public enum PlayerState { MoveState, ShootState, PullState };

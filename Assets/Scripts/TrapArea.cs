@@ -14,15 +14,10 @@ public class TrapArea : MonoBehaviour
     public float spawnRange;
 
     // Start is called before the first frame update
-    void Start()
+    public void StartSpawnTrap()
     {
         StartCoroutine(CreateTrap());
         StartCoroutine(DestroyArea());
-    }
-
-    void Update()
-    {
-
     }
 
     IEnumerator CreateTrap()

@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 8083666085174098063}
   - component: {fileID: 8083666085174098056}
   m_Layer: 0
-  m_Name: Trap Area Skill
+  m_Name: RootTrapAreaSkill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

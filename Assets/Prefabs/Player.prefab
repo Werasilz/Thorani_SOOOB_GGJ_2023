@@ -461,11 +461,13 @@ MonoBehaviour:
   character: {fileID: 6675617534287204610}
   rootCharacter: {fileID: 3722862045214619100}
   shootingArea: {fileID: 1527906767399100623}
+  rootSpawnPoint: {fileID: 2537392592754059788}
   rootSkillPrefab: {fileID: 3622567897029046928, guid: a09ca2aea85bf944d9d7ab93194f34ae,
     type: 3}
   rootSkill: {fileID: 0}
-  rootSpawnPoint: {fileID: 2537392592754059788}
   rootWallSkillPrefab: {fileID: 3017485512282170900, guid: 506c50a9a50cb61479d54d2d3f428bd5,
+    type: 3}
+  rootTrapSkillPrefab: {fileID: 8083666085174098060, guid: 92984fc6eac8a36489a877384dff7bde,
     type: 3}
   moveSpeed: 6
   movable: 0
@@ -483,6 +485,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+  isStartMotor: 0
+  motorTimer: 0
 --- !u!114 &8528293660086325780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +512,7 @@ MonoBehaviour:
     countCooldown: 0
     isCooldown: 0
     MPCost: 3
-  - cooldown: 10
+  - cooldown: 1.5
     countCooldown: 0
     isCooldown: 0
     MPCost: 4

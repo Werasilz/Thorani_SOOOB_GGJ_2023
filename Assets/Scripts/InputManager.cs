@@ -7,17 +7,7 @@ public class InputManager : MonoBehaviour
 {
     PlayerInput playerInput => GetComponent<PlayerInput>();
     PlayerController playerController => GetComponent<PlayerController>();
-
-    [Header("Input")]
-    public Vector2 direction;
-    // [SerializeField] private bool A;
-    // [SerializeField] private bool B;
-    // [SerializeField] private bool X;
-    // [SerializeField] private bool Y;
-    // [SerializeField] private bool RT;
-    // [SerializeField] private bool RB;
-    // [SerializeField] private bool LT;
-    // [SerializeField] private bool LB;
+    [HideInInspector] public Vector2 direction;
 
     public void OnMove(InputValue value)
     {
@@ -31,8 +21,6 @@ public class InputManager : MonoBehaviour
 
     public void OnA(InputValue value)
     {
-        //A = value.isPressed;
-
         // Change move state to shoot state
         if (playerController.playerState == PlayerState.MoveState)
         {
@@ -50,8 +38,6 @@ public class InputManager : MonoBehaviour
 
     public void OnB(InputValue value)
     {
-        //B = value.isPressed;
-
         if (playerController.playerState == PlayerState.PullState)
         {
             playerController.pullSystem.Detach();
@@ -63,8 +49,6 @@ public class InputManager : MonoBehaviour
 
     public void OnX(InputValue value)
     {
-        //X = value.isPressed;
-
         if (playerController.playerState == PlayerState.MoveState)
         {
             playerController.abilityController.CastSkill(1);
@@ -73,27 +57,26 @@ public class InputManager : MonoBehaviour
 
     public void OnY(InputValue value)
     {
-        //Y = value.isPressed;
+        if (playerController.playerState == PlayerState.MoveState)
+        {
+            playerController.abilityController.CastSkill(2);
+        }
     }
 
     public void OnLT(InputValue value)
     {
-        //LT = value.isPressed;
     }
 
     public void OnLB(InputValue value)
     {
-        //LT = value.isPressed;
     }
 
     public void OnRT(InputValue value)
     {
-        //RT = value.isPressed;
     }
 
     public void OnRB(InputValue value)
     {
-        //RB = value.isPressed;
     }
 
     public void OnStickUp(InputValue value)
