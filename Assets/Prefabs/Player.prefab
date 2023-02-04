@@ -154,7 +154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2606838484970403849}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 4}
+  m_LocalPosition: {x: 0, y: 0, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -614,6 +614,9 @@ MonoBehaviour:
   character: {fileID: 6675617534287204610}
   rootCharacter: {fileID: 3722862045214619100}
   shootingArea: {fileID: 1527906767399100623}
+  rootColliders:
+  - {fileID: 6331146820720613440}
+  - {fileID: 960114972348920325}
   root: {fileID: 4284307690116241840}
   moveSpeed: 6
   movable: 0

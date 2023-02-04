@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,9 @@ public class PlayerController : MonoBehaviour
     public GameObject rootCharacter;
     public GameObject shootingArea;
 
+    [Header("Collider")]
+    public Collider[] rootColliders;
+
     [Header("Animator")]
     public Animator root;
 
@@ -34,6 +38,9 @@ public class PlayerController : MonoBehaviour
 
         // Set first state to move 
         StateUpdate(PlayerState.MoveState);
+
+        // Disable collider
+        SetActiveCollider(false);
     }
 
     public void Update()
@@ -50,6 +57,8 @@ public class PlayerController : MonoBehaviour
 
         // Pull target
         pullSystem.PullingTarget();
+
+        pullSystem.attachTransform.LookAt(transform.position);
     }
 
     public void StateUpdate(PlayerState newPlayerState)
@@ -57,13 +66,11 @@ public class PlayerController : MonoBehaviour
         // Apply new state
         playerState = newPlayerState;
 
-        // Always can rotate in any state
-        rotatable = true;
-
         if (playerState == PlayerState.MoveState)
         {
             // Set move 
             movable = true;
+            rotatable = true;
 
             // Show character and hide other model
             character.SetActive(true);
@@ -74,16 +81,21 @@ public class PlayerController : MonoBehaviour
         {
             // Set move 
             movable = false;
+            rotatable = true;
 
             // Hide character and show root shooting area
             character.SetActive(false);
             rootCharacter.SetActive(true);
             shootingArea.SetActive(true);
+
+            // Enable collider
+            SetActiveCollider(true);
         }
         else if (playerState == PlayerState.PullState)
         {
             // Set move 
             movable = false;
+            rotatable = false;
 
             // Start pulling
             pullSystem.isPulling = true;
@@ -115,6 +127,14 @@ public class PlayerController : MonoBehaviour
         // Rotate code
         var move = Quaternion.Euler(0, centerDirection.eulerAngles.y, 0) * new Vector3(inputManager.direction.x, 0, inputManager.direction.y);
         transform.LookAt(transform.position + move);
+    }
+
+    public void SetActiveCollider(bool value)
+    {
+        foreach (var collider in rootColliders)
+        {
+            collider.enabled = value;
+        }
     }
 
     public void ActivePull()
@@ -163,6 +183,9 @@ public class PlayerController : MonoBehaviour
             // Fail to pull enemy, Reset to move state
             if (!pullSystem.attached)
             {
+                // Disable collider
+                SetActiveCollider(false);
+
                 StateUpdate(PlayerState.MoveState);
             }
         }

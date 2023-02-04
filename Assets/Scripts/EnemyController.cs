@@ -15,7 +15,7 @@ public class EnemyController : MonoBehaviour
 
     private float countReWanderTime = 0f;
 
-    NavMeshAgent agent;
+    [HideInInspector] public NavMeshAgent agent;
 
     private bool wandering = true;
 
@@ -34,13 +34,14 @@ public class EnemyController : MonoBehaviour
     public void GetCatch()
     {
         agent.isStopped = true;
+        agent.enabled = false;
     }
 
     IEnumerator Wander()
     {
         while (true)
         {
-            if (wandering)
+            if (wandering && !agent.isStopped)
             {
                 int ranX = Random.Range(0, 2);
                 ranX = ranX == 1 ? 1 : -1;
@@ -55,6 +56,9 @@ public class EnemyController : MonoBehaviour
 
     public void FindPlayer()
     {
+        if (!agent.enabled) return;
+        if (agent.isStopped) return;
+
         Collider[] playerObjects = Physics.OverlapSphere(transform.position, radius);
 
         int playerCount = 0;

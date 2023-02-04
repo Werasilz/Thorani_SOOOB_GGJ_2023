@@ -42,7 +42,7 @@ public class PullSystem
     public void CheckingComplete()
     {
         // Reach require score
-        if (pullScore >= requireScore)
+        if (isPulling && pullScore >= requireScore)
         {
             // Reset to zero
             pullScore = 0;
@@ -55,6 +55,13 @@ public class PullSystem
 
             // Change to move state
             playerController.StateUpdate(PlayerState.MoveState);
+
+            // Destroy enemy
+            Object.Destroy(attachTransform.transform.GetChild(0).gameObject);
+
+            // Reset transform
+            attachTransform.transform.localPosition = new Vector3(0, 0, defaultDistance);
+            attachTransform.transform.localRotation = Quaternion.identity;
         }
     }
 

@@ -8,9 +8,18 @@ public class Pullable : MonoBehaviour
     {
         if (other.gameObject.tag == "Root")
         {
+            EnemyController enemyController = transform.GetComponentInParent<EnemyController>();
+            if (!enemyController.agent.enabled) return;
+
+            // Stop enemy running
+            enemyController.GetCatch();
+
             // Change to pull state
             PlayerController playerController = other.GetComponentInParent<PlayerController>();
             playerController.StateUpdate(PlayerState.PullState);
+
+            // Disable collider
+            playerController.SetActiveCollider(false);
 
             // Attach this enemy to root
             transform.parent = playerController.pullSystem.attachTransform.transform;
@@ -18,13 +27,10 @@ public class Pullable : MonoBehaviour
             // Set attached
             playerController.pullSystem.attached = true;
 
-            // Stop enemy running
-            EnemyController enemyController = transform.GetComponentInParent<EnemyController>();
-            enemyController.GetCatch();
+            // Look at opposite to player
             enemyController.transform.localPosition = Vector3.zero;
-
-            Vector3 lookDirection = (enemyController.transform.position - playerController.transform.forward).normalized;
-            enemyController.transform.LookAt(enemyController.transform.position + lookDirection);
+            enemyController.transform.LookAt(playerController.transform.position);
+            enemyController.transform.localEulerAngles = new Vector3(0, 180, 0);
         }
     }
 }
