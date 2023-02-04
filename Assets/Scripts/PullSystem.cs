@@ -10,7 +10,7 @@ public class PullSystem
     [Header("Status")]
     public bool isPulling;
     public bool attached;
-    [SerializeField] private float pullScore;
+    public float pullDistance;
 
     [Header("Pull Transform")]
     public float defaultDistance;
@@ -18,10 +18,11 @@ public class PullSystem
 
     [Header("Settings")]
     [SerializeField] private float pullSpeed;
-    [SerializeField] private int requireScore;
-    [SerializeField] private float decreaseAmount;
-    [SerializeField] private float waitTimer;
+    [SerializeField] private float requireDistance;
+    public float decreaseAmount;
+    public float pullBackDelay;
     private bool pulled;
+    private bool startPullBack;
 
     public void ScoreDecreasing()
     {
@@ -29,49 +30,69 @@ public class PullSystem
         if (isPulling && !pulled)
         {
             // Decrease pull score
-            pullScore -= decreaseAmount;
+            pullDistance += decreaseAmount;
 
             // Reset
-            if (pullScore <= 0)
+            if (pullDistance >= defaultDistance + 3)
             {
-                pullScore = 0;
+                Detach();
+                ResetPull();
             }
+        }
+    }
+
+    public void Detach()
+    {
+        // Free that Enemy
+        if (attached)
+        {
+            attachTransform.GetComponentInChildren<EnemyController>().EnableAgent(true);
+            attachTransform.transform.GetChild(0).parent = null;
         }
     }
 
     public void CheckingComplete()
     {
         // Reach require score
-        if (isPulling && pullScore >= requireScore)
+        if (isPulling && pullDistance <= requireDistance)
         {
-            // Reset to zero
-            pullScore = 0;
-
-            // Reset pulling action
-            isPulling = false;
-
-            // Reset attach enemy
-            attached = false;
-
-            // Change to move state
-            playerController.StateUpdate(PlayerState.MoveState);
+            ResetPull();
 
             // Destroy enemy
             Object.Destroy(attachTransform.transform.GetChild(0).gameObject);
-
-            // Reset transform
-            attachTransform.transform.localPosition = new Vector3(0, 0, defaultDistance);
-            attachTransform.transform.localRotation = Quaternion.identity;
         }
+    }
+
+    public void ResetPull()
+    {
+        // Reset to zero
+        pullDistance = 0;
+
+        // Reset pulling action
+        isPulling = false;
+
+        // Reset attach enemy
+        attached = false;
+
+        // Reset pull back
+        startPullBack = false;
+        pulled = true;
+
+        // Change to move state
+        playerController.StateUpdate(PlayerState.MoveState);
+
+        // Reset transform
+        attachTransform.transform.localPosition = new Vector3(0, 0, defaultDistance);
+        attachTransform.transform.localRotation = Quaternion.identity;
     }
 
     public IEnumerator TimeCounting()
     {
         // Waiting
-        yield return new WaitForSeconds(waitTimer);
+        yield return new WaitForSeconds(pullBackDelay);
 
         // Reset pull action, it will use for decrease pull score
-        pulled = false;
+        startPullBack = true;
     }
 
     public void PullInput()
@@ -82,7 +103,15 @@ public class PullSystem
             pulled = true;
 
             // Add pull score
-            pullScore += 1;
+            pullDistance -= pullSpeed;
+        }
+    }
+
+    public void PullBack()
+    {
+        if (startPullBack)
+        {
+            pulled = false;
         }
     }
 
@@ -90,17 +119,7 @@ public class PullSystem
     {
         if (isPulling)
         {
-            var scaledMoveSpeed = pullSpeed * Time.deltaTime;
-            var move = Quaternion.Euler(0, playerController.centerDirection.eulerAngles.y, 0) * new Vector3(0, 0, 0.25f);
-
-            if (pullScore > 0)
-            {
-                attachTransform.localPosition -= new Vector3(0, 0, move.z * scaledMoveSpeed);
-            }
-            else
-            {
-                attachTransform.localPosition += new Vector3(0, 0, move.z * scaledMoveSpeed);
-            }
+            attachTransform.position = playerController.transform.position + ((playerController.transform.forward).normalized * pullDistance);
         }
     }
 }

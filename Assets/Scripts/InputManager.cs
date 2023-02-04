@@ -38,6 +38,14 @@ public class InputManager : MonoBehaviour
     public void OnB(InputValue value)
     {
         //B = value.isPressed;
+
+        if (playerController.playerState == PlayerState.PullState)
+        {
+            playerController.pullSystem.Detach();
+            playerController.pullSystem.ResetPull();
+        }
+
+        playerController.StateUpdate(PlayerState.MoveState);
     }
 
     public void OnX(InputValue value)

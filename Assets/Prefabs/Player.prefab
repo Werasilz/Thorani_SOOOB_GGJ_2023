@@ -603,13 +603,13 @@ MonoBehaviour:
     playerController: {fileID: 0}
     isPulling: 0
     attached: 0
-    pullScore: 0
+    pullDistance: 0
     defaultDistance: 4
     attachTransform: {fileID: 2578797375737594863}
-    pullSpeed: 3
-    requireScore: 30
-    decreaseAmount: 0.05
-    waitTimer: 1.5
+    pullSpeed: 0.2
+    requireDistance: 1
+    decreaseAmount: 0.005
+    waitTimer: 0
   playerState: 0
   character: {fileID: 6675617534287204610}
   rootCharacter: {fileID: 3722862045214619100}

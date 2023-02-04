@@ -58,6 +58,9 @@ public class PlayerController : MonoBehaviour
         // Pull target
         pullSystem.PullingTarget();
 
+        // Enemy pull back
+        pullSystem.PullBack();
+
         pullSystem.attachTransform.LookAt(transform.position);
     }
 
@@ -87,9 +90,6 @@ public class PlayerController : MonoBehaviour
             character.SetActive(false);
             rootCharacter.SetActive(true);
             shootingArea.SetActive(true);
-
-            // Enable collider
-            SetActiveCollider(true);
         }
         else if (playerState == PlayerState.PullState)
         {
@@ -147,19 +147,21 @@ public class PlayerController : MonoBehaviour
     {
         // Add pull score
         pullSystem.PullInput();
+    }
 
-        // Check coroutine
+    public void StartDelayPullBack()
+    {
         if (pullTimeCountingCoroutine != null)
         {
             StopCoroutine(pullTimeCountingCoroutine);
         }
-
-        // Start time counting
         pullTimeCountingCoroutine = StartCoroutine(pullSystem.TimeCounting());
     }
 
     public void SkillA()
     {
+
+
         // Change move state to shoot state
         if (playerState == PlayerState.MoveState)
         {
@@ -174,6 +176,9 @@ public class PlayerController : MonoBehaviour
 
         IEnumerator ActiveRoot()
         {
+            // Enable collider
+            SetActiveCollider(true);
+
             // Play animation
             root.SetTrigger("ActiveRoot");
 

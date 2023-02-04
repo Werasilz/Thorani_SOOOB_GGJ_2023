@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Pullable : MonoBehaviour
 {
+    public float decreaseAmount;
+    public float pullBackDelay;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Root")
@@ -23,6 +26,18 @@ public class Pullable : MonoBehaviour
 
             // Attach this enemy to root
             transform.parent = playerController.pullSystem.attachTransform.transform;
+
+            // Send pullDistance to player
+            playerController.pullSystem.pullDistance = playerController.pullSystem.defaultDistance;
+
+            // Send decreaseAmount to player
+            playerController.pullSystem.decreaseAmount = decreaseAmount;
+
+            // Start Counting decreaseAmount Start Time
+            playerController.pullSystem.pullBackDelay = pullBackDelay;
+
+            // Start delay pull back
+            playerController.StartDelayPullBack();
 
             // Set attached
             playerController.pullSystem.attached = true;
