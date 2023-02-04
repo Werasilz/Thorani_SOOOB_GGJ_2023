@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
+    PlayerInput playerInput => GetComponent<PlayerInput>();
     PlayerController playerController => GetComponent<PlayerController>();
 
     [Header("Input")]
@@ -103,6 +104,44 @@ public class InputManager : MonoBehaviour
     public void OnStickDown(InputValue value)
     {
         playerController.Pull();
+    }
+
+    public void OnDPadLeft(InputValue value)
+    {
+        if (PlayerManager.instance.gameState == GameState.ChooseColorState)
+        {
+            if (value.isPressed)
+            {
+                PlayerManager.instance.DisableLastSelect(playerInput);
+                PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] -= 1;
+
+                if (PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] < 0)
+                {
+                    PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] = 3;
+                }
+
+                PlayerManager.instance.EnableNextSelect(playerInput);
+            }
+        }
+    }
+
+    public void OnDPadRight(InputValue value)
+    {
+        if (PlayerManager.instance.gameState == GameState.ChooseColorState)
+        {
+            if (value.isPressed)
+            {
+                PlayerManager.instance.DisableLastSelect(playerInput);
+                PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] += 1;
+
+                if (PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] > 3)
+                {
+                    PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] = 0;
+                }
+
+                PlayerManager.instance.EnableNextSelect(playerInput);
+            }
+        }
     }
 
     public bool isStartMotor;

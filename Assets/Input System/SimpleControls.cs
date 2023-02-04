@@ -134,6 +134,24 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""b9f0941d-e3ff-4f11-86b4-95800f8568d2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DPadRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""e9ff8179-89b0-48e3-8de1-70265c6c07c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -196,61 +214,6 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""name"": ""right"",
                     ""id"": ""fb9dbaeb-8b08-484f-a10d-b3ef7dc9ce97"",
                     ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""DPad"",
-                    ""id"": ""598be02b-920d-4858-975c-c51ec723c076"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""f0db9041-4e44-42fb-b705-d1490af24b94"",
-                    ""path"": ""<Gamepad>/dpad/up"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""5166d391-242d-4867-8068-f5af75dc5f28"",
-                    ""path"": ""<Gamepad>/dpad/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""e2c0cf76-707d-4d60-8801-1dbf5a791148"",
-                    ""path"": ""<Gamepad>/dpad/left"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""7c30bfe1-3bb4-404d-8f51-1123cc286758"",
-                    ""path"": ""<Gamepad>/dpad/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -488,6 +451,28 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""StickDown"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7711854c-0486-4e8a-bbf3-bdd6aea020a3"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fd24cf58-2bf3-4cef-b82f-12d03328cd3b"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DPadRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -508,6 +493,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         m_Player_LB = m_Player.FindAction("LB", throwIfNotFound: true);
         m_Player_StickUp = m_Player.FindAction("StickUp", throwIfNotFound: true);
         m_Player_StickDown = m_Player.FindAction("StickDown", throwIfNotFound: true);
+        m_Player_DPadLeft = m_Player.FindAction("DPadLeft", throwIfNotFound: true);
+        m_Player_DPadRight = m_Player.FindAction("DPadRight", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -579,6 +566,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LB;
     private readonly InputAction m_Player_StickUp;
     private readonly InputAction m_Player_StickDown;
+    private readonly InputAction m_Player_DPadLeft;
+    private readonly InputAction m_Player_DPadRight;
     public struct PlayerActions
     {
         private @SimpleControls m_Wrapper;
@@ -595,6 +584,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         public InputAction @LB => m_Wrapper.m_Player_LB;
         public InputAction @StickUp => m_Wrapper.m_Player_StickUp;
         public InputAction @StickDown => m_Wrapper.m_Player_StickDown;
+        public InputAction @DPadLeft => m_Wrapper.m_Player_DPadLeft;
+        public InputAction @DPadRight => m_Wrapper.m_Player_DPadRight;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -640,6 +631,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @StickDown.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
                 @StickDown.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
                 @StickDown.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStickDown;
+                @DPadLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadLeft;
+                @DPadLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadLeft;
+                @DPadRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
+                @DPadRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
+                @DPadRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -680,6 +677,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @StickDown.started += instance.OnStickDown;
                 @StickDown.performed += instance.OnStickDown;
                 @StickDown.canceled += instance.OnStickDown;
+                @DPadLeft.started += instance.OnDPadLeft;
+                @DPadLeft.performed += instance.OnDPadLeft;
+                @DPadLeft.canceled += instance.OnDPadLeft;
+                @DPadRight.started += instance.OnDPadRight;
+                @DPadRight.performed += instance.OnDPadRight;
+                @DPadRight.canceled += instance.OnDPadRight;
             }
         }
     }
@@ -698,5 +701,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         void OnLB(InputAction.CallbackContext context);
         void OnStickUp(InputAction.CallbackContext context);
         void OnStickDown(InputAction.CallbackContext context);
+        void OnDPadLeft(InputAction.CallbackContext context);
+        void OnDPadRight(InputAction.CallbackContext context);
     }
 }
