@@ -100,7 +100,7 @@ public class InputManager : MonoBehaviour
 
                 if (PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] < 0)
                 {
-                    PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] = 3;
+                    PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] = 4;
                 }
 
                 PlayerManager.instance.EnableNextSelect(playerInput);
@@ -117,7 +117,7 @@ public class InputManager : MonoBehaviour
                 PlayerManager.instance.DisableLastSelect(playerInput);
                 PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] += 1;
 
-                if (PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] > 3)
+                if (PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] > 4)
                 {
                     PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] = 0;
                 }

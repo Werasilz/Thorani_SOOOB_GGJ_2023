@@ -9,6 +9,9 @@ public class TrapArea : MonoBehaviour
     public PlayerInput playerInput;
 
     public GameObject trapPrefab;
+
+    public List<Transform> trapSpawnPoints;
+
     public float duration;
     public int spawnTrapLimit;
     int countSpawnTrap;
@@ -30,10 +33,13 @@ public class TrapArea : MonoBehaviour
 
         while (countSpawnTrap < spawnTrapLimit)
         {
-            Vector2 randomPoint = Random.insideUnitCircle * spawnRange;
+            int spawnIndex = Random.Range(0, trapSpawnPoints.Count);
+
+            Vector3 randomPoint = trapSpawnPoints[spawnIndex].position;
+            trapSpawnPoints.RemoveAt(spawnIndex);
 
             GameObject trapClone = Instantiate(trapPrefab);
-            trapClone.transform.position = transform.position + new Vector3(randomPoint.x, 0, randomPoint.y);
+            trapClone.transform.position = randomPoint;
 
             TrapSkillY trapSkillY = trapClone.GetComponent<TrapSkillY>();
             trapSkillY.playerInput = playerInput;
