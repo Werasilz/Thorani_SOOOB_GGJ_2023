@@ -23,9 +23,12 @@ public class PlayerController : MonoBehaviour
     public GameObject shootingArea;
 
     [Header("Root Skill")]
-    public GameObject rootSkillPrefab;
     public Transform rootSpawnPoint;
-    public RootSkill rootSkill;
+    public GameObject rootSkillPrefab;
+    [HideInInspector] public RootSkill rootSkill;
+
+    [Header("Root Wall Skill")]
+    public GameObject rootWallSkillPrefab;
 
     [Header("Status")]
     public float moveSpeed;
@@ -180,14 +183,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SkillB()
-    {
-
-    }
-
     public void SkillX()
     {
+        GameObject newRootWallSkill = Instantiate(rootWallSkillPrefab, rootSpawnPoint);
+        newRootWallSkill.SetActive(true);
 
+        // Spawn root
+        RootWallSkill rootWallSkill = newRootWallSkill.GetComponent<RootWallSkill>();
+        rootWallSkill.StartSpawnRootWall();
+
+        newRootWallSkill.transform.parent = null;
     }
 
     public void SkillY()

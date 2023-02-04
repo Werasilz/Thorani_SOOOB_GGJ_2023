@@ -40,10 +40,10 @@ public class AbilityController : MonoBehaviour
                         playerController.SkillA();
                         break;
                     case 1:
+                        playerController.SkillX();
                         break;
                     case 2:
-                        break;
-                    case 3:
+                        playerController.SkillY();
                         break;
                 }
             }

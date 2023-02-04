@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RootSkill : MonoBehaviour
+public class RootWallSkill : MonoBehaviour
 {
     [Header("Spawn Settings")]
     private List<Vector3> spawnPos;
@@ -12,36 +12,20 @@ public class RootSkill : MonoBehaviour
     [SerializeField] private float spawnDelay;
     [SerializeField] private float reverseDelay;
 
-    [Header("Collider")]
-    public Collider rootSpinCollider;
-
     [Header("Prefabs")]
     [SerializeField] private GameObject rootLinePrefab;
-    [SerializeField] private GameObject rootSpinPrefab;
 
     [Header("Animations")]
     public List<Animation> animations;
     [SerializeField] private AnimationClip normalRootLine;
     [SerializeField] private AnimationClip reverseRootLine;
-    [SerializeField] private AnimationClip normalRootSpin;
-    [SerializeField] private AnimationClip reverseRootSpin;
 
     [Header("Debug")]
     [SerializeField] private bool showGizmos;
 
-    public void StartSpawnRoot()
+    public void StartSpawnRootWall()
     {
         StartCoroutine(SpawnRoot());
-    }
-
-    public void StartReverseRoot()
-    {
-        StartCoroutine(ReverseRoot());
-    }
-
-    public void SetActiveCollider(bool value)
-    {
-        rootSpinCollider.enabled = value;
     }
 
     IEnumerator SpawnRoot()
@@ -58,19 +42,8 @@ public class RootSkill : MonoBehaviour
 
         for (int i = 0; i < spawnPos.Count; i++)
         {
-            GameObject newRoot;
-
-            // Spawn root line
-            if (i < spawnPos.Count - 1)
-            {
-                newRoot = Instantiate(rootLinePrefab, transform);
-            }
-            // Spawn root spin at last index
-            else
-            {
-                newRoot = Instantiate(rootSpinPrefab, transform);
-                rootSpinCollider = newRoot.GetComponent<Collider>();
-            }
+            // Spawn root
+            GameObject newRoot = Instantiate(rootLinePrefab, transform);
 
             // Enable and set position
             newRoot.SetActive(true);
@@ -81,36 +54,21 @@ public class RootSkill : MonoBehaviour
 
             yield return new WaitForSeconds(spawnDelay);
         }
+
+        yield return new WaitForSeconds(reverseDelay);
+
+        StartCoroutine(ReverseRoot());
     }
 
     IEnumerator ReverseRoot()
     {
-        SetActiveCollider(false);
-
-        foreach (var anim in animations)
-        {
-            if (anim != null)
-            {
-                anim.transform.parent.parent = null;
-            }
-        }
-
         for (int i = animations.Count - 1; i >= 0; i--)
         {
             if (animations[i] == null)
                 continue;
 
-            // Set reverse animation at last index
-            if (i == spawnPos.Count - 1)
-            {
-                animations[i].clip = reverseRootSpin;
-            }
             // Set reverse animation
-            else
-            {
-                animations[i].clip = reverseRootLine;
-            }
-
+            animations[i].clip = reverseRootLine;
             animations[i].Play();
 
             yield return new WaitForSeconds(spawnDelay);
@@ -119,14 +77,6 @@ public class RootSkill : MonoBehaviour
         yield return new WaitForSeconds(1);
 
         Destroy(gameObject);
-    }
-
-    public void ReverseSingleRootLine(Animation animation)
-    {
-        animation.clip = reverseRootLine;
-        animation.Play();
-
-        Destroy(animation.transform.parent.gameObject, 1);
     }
 
     private void OnDrawGizmos()

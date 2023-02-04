@@ -63,6 +63,11 @@ public class InputManager : MonoBehaviour
     public void OnX(InputValue value)
     {
         //X = value.isPressed;
+
+        if (playerController.playerState == PlayerState.MoveState)
+        {
+            playerController.abilityController.CastSkill(1);
+        }
     }
 
     public void OnY(InputValue value)

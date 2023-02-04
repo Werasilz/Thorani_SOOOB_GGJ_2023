@@ -25,7 +25,6 @@ public class Pullable : MonoBehaviour
             playerController.rootSkill.SetActiveCollider(false);
 
             // Attach this enemy to root
-            // transform.parent = playerController.pullSystem.attachTransform.transform;
             transform.parent = playerController.rootSkill.rootSpinCollider.transform;
 
             // Send pullDistance to player
