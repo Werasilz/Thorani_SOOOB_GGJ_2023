@@ -1747,7 +1747,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 9031681147002416583, guid: 693acfeb917b9c34ea0c7b85cf02b8ff, type: 3}
-  - {fileID: 9031681147002416583, guid: b3040ae6de7df254e83820858479ef11, type: 3}
+  - {fileID: 9031681147002416583, guid: 845718607de5b9e4983c3310a83b4b0c, type: 3}
+  - {fileID: 9031681147002416583, guid: 004a7735cf8f33648b6f180f7e98fa63, type: 3}
   spawnRange: 10
   enemies: []
   maxEnemyInMap: 20
