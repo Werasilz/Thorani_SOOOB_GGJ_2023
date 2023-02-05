@@ -25,34 +25,37 @@ public class SpawnManager : MonoBehaviour
     {
         int wave = 0;
 
-        while (spawning)
+        while (true)
         {
             yield return new WaitForSeconds(waveRange);
 
-            for (int i = 0; i < enemies.Count; i++)
+            if (spawning)
             {
-                if (enemies[i] == null)
+                for (int i = 0; i < enemies.Count; i++)
                 {
-                    enemies.RemoveAt(i);
-                    i--;
-                }
-            }
-
-            if (enemies.Count < maxEnemyInMap)
-            {
-                if (wave >= minMaxSPawnPerWave.Length)
-                    wave = minMaxSPawnPerWave.Length - 1;
-
-                int countToSpawn = Random.Range(minMaxSPawnPerWave[wave].x, minMaxSPawnPerWave[wave].y);
-
-                for (int i = 0; i < countToSpawn; i++)
-                {
-                    if (enemies.Count >= maxEnemyInMap) break;
-
-                    CreateEnemy();
+                    if (enemies[i] == null)
+                    {
+                        enemies.RemoveAt(i);
+                        i--;
+                    }
                 }
 
-                wave++;
+                if (enemies.Count < maxEnemyInMap)
+                {
+                    if (wave >= minMaxSPawnPerWave.Length)
+                        wave = minMaxSPawnPerWave.Length - 1;
+
+                    int countToSpawn = Random.Range(minMaxSPawnPerWave[wave].x, minMaxSPawnPerWave[wave].y);
+
+                    for (int i = 0; i < countToSpawn; i++)
+                    {
+                        if (enemies.Count >= maxEnemyInMap) break;
+
+                        CreateEnemy();
+                    }
+
+                    wave++;
+                }
             }
         }
     }
