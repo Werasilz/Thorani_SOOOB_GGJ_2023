@@ -46,6 +46,12 @@ public class Pullable : MonoBehaviour
             enemyController.transform.localPosition = Vector3.zero;
             enemyController.transform.LookAt(playerController.transform.position);
             enemyController.transform.localEulerAngles = new Vector3(0, 180, 0);
+
+            enemyController.touch.transform.SetParent(null);
+            enemyController.touch.GetComponent<Collider>().enabled = true;
+            enemyController.touch.GetComponent<Rigidbody>().isKinematic = false;
+            enemyController.holdingTouch = false;
+            Destroy(enemyController.touch, 5f);
         }
 
         if (other.gameObject.tag == "RootLine")

@@ -13,6 +13,8 @@ public class TrapSkillY : MonoBehaviour
 
     public GameObject target;
 
+    public GameObject burningParticle;
+
     public float delayChange = 1f;
 
     void Start()
@@ -75,11 +77,21 @@ public class TrapSkillY : MonoBehaviour
             {
                 target = other.gameObject;
 
-                target.transform.position = transform.position;
-                target.GetComponent<EnemyController>().EnableAgent(false);
-                target.GetComponent<Rigidbody>().isKinematic = true;
+                if (target.GetComponent<EnemyController>().holdingTouch)
+                {
+                    GetComponent<Collider>().enabled = false;
+                    finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
+                    burningParticle.SetActive(true);
+                    Destroy(gameObject, 2f);
+                }
+                else
+                {
+                    target.transform.position = transform.position;
+                    target.GetComponent<EnemyController>().EnableAgent(false);
+                    target.GetComponent<Rigidbody>().isKinematic = true;
 
-                StartCoroutine(KillEnemy());
+                    StartCoroutine(KillEnemy());
+                }
             }
         }
 

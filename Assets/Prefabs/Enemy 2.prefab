@@ -81,6 +81,8 @@ GameObject:
   - component: {fileID: 2583263834238617896}
   - component: {fileID: 5377320418747780020}
   - component: {fileID: 1188821396869863741}
+  - component: {fileID: 3028021252842808512}
+  - component: {fileID: 457752574304072496}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -154,6 +156,35 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &3028021252842808512
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266979659759607814}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.7438359, y: 3.5680509, z: 0.7251821}
+  m_Center: {x: 0.059567787, y: 2.450939, z: 0.0019529683}
+--- !u!54 &457752574304072496
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266979659759607814}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &2320634097355148395
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,6 +1218,8 @@ MonoBehaviour:
   maxHP: 1
   currentHP: 0
   enemyScore: 2
+  touch: {fileID: 0}
+  holdingTouch: 0
   radius: 5.5
   playerInArea: 0
   randomWanderTime: 1

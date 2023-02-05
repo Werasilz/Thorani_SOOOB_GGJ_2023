@@ -12,6 +12,8 @@ public class EnemyController : MonoBehaviour
 
     public int enemyScore = 1;
 
+    public GameObject touch;
+    public bool holdingTouch;
 
     public float radius;
     public bool playerInArea;
@@ -35,6 +37,8 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemySkinController.RandomSkinAndEquipment();
+
+        holdingTouch = touch.activeInHierarchy;
 
         currentHP = maxHP;
     }
