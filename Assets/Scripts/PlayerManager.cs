@@ -8,31 +8,37 @@ using TMPro;
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
+
+    [Header("State")]
     public GameState gameState;
 
+    [Header("Isometric Transform")]
     public Transform centerDirection;
+
+    [Header("Player")]
     public List<PlayerInput> playersInput = new List<PlayerInput>();
     public List<PlayerController> playerControllers = new List<PlayerController>();
+    public List<PlayerScore> playerScores;
 
+    [Header("Spawn")]
     public Transform[] spawnPoints;
-    public AbilityUIManager[] abilityUIManagers;
 
     [Header("UserInterface")]
+    public AbilityUIManager[] abilityUIManagers;
     public TextMeshProUGUI pressStartTextP1;
     public TextMeshProUGUI pressStartTextP2;
-
     public TextMeshProUGUI[] playersScoreText;
     public TextMeshProUGUI[] playersLevelText;
 
     [Header("Choose Color")]
+    public GameObject chooseColorMenu;
     public int[] playerSelectIndex;
     public bool[] isSelected;
-    public GameObject chooseColorMenu;
+    public Material[] colorMaterials;
+
+    [Header("Choose Color UI")]
     public Image[] p1ColorImage;
     public Image[] p2ColorImage;
-
-    [Header("Player Status")]
-    public List<PlayerScore> playerScores;
 
     private void Awake()
     {

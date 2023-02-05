@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     public bool movable;
     public bool rotatable;
 
+    [Header("Renderers")]
+    public Renderer[] characterRenderers;
+
     private void Start()
     {
         pullSystem.playerController = this;
@@ -73,6 +76,14 @@ public class PlayerController : MonoBehaviour
         if (rootSkill != null && rootSkill.rootSpinCollider != null)
         {
             rootSkill.rootSpinCollider.transform.LookAt(transform.position);
+        }
+    }
+
+    public void ColorUpdate()
+    {
+        foreach (var renderer in characterRenderers)
+        {
+            renderer.material = PlayerManager.instance.colorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
         }
     }
 

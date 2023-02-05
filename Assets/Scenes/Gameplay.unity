@@ -1738,6 +1738,7 @@ MonoBehaviour:
   centerDirection: {fileID: 1342566514}
   playersInput: []
   playerControllers: []
+  playerScores: []
   spawnPoints:
   - {fileID: 869730482}
   - {fileID: 637580928}
@@ -1752,9 +1753,15 @@ MonoBehaviour:
   playersLevelText:
   - {fileID: 717565413}
   - {fileID: 1359459236}
+  chooseColorMenu: {fileID: 1373079982}
   playerSelectIndex: 0000000000000000
   isSelected: 0000
-  chooseColorMenu: {fileID: 1373079982}
+  colorMaterials:
+  - {fileID: 2100000, guid: b892a9cbbfc3262408e951c76fdc7cd1, type: 2}
+  - {fileID: 2100000, guid: ca5da07af9e1a424a9639b67946e6d1a, type: 2}
+  - {fileID: 2100000, guid: 91436af2fb4cf9944bdaf1ca7b26115c, type: 2}
+  - {fileID: 2100000, guid: bb48bc0a274d1bd4f82f3651bdffbdf7, type: 2}
+  - {fileID: 2100000, guid: d6c6e449409dbff4ba91555062c494bc, type: 2}
   p1ColorImage:
   - {fileID: 1241671522}
   - {fileID: 808421312}
@@ -1767,7 +1774,6 @@ MonoBehaviour:
   - {fileID: 1389322347}
   - {fileID: 989713461}
   - {fileID: 1325727596}
-  playerScores: []
 --- !u!1 &485559384
 GameObject:
   m_ObjectHideFlags: 0

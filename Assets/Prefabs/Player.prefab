@@ -712,6 +712,13 @@ MonoBehaviour:
   moveSpeed: 6
   movable: 0
   rotatable: 0
+  characterRenderers:
+  - {fileID: 1374556569734929687}
+  - {fileID: 7376457222522655973}
+  - {fileID: 7020477661203895220}
+  - {fileID: 8769715018700154925}
+  - {fileID: 2983337479366779838}
+  - {fileID: 1381274988430431351}
 --- !u!114 &265343588729382872
 MonoBehaviour:
   m_ObjectHideFlags: 0

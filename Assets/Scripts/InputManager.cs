@@ -163,7 +163,9 @@ public class InputManager : MonoBehaviour
 
     public void ActiveGamepadMotor()
     {
-        Gamepad.current.SetMotorSpeeds(0.1f, 0.2f);
+        Gamepad gamepad = playerInput.GetDevice<Gamepad>();
+        gamepad.SetMotorSpeeds(0.1f, 0.2f);
+
         isStartMotor = true;
         motorTimer = 1.5f;
     }
@@ -178,7 +180,9 @@ public class InputManager : MonoBehaviour
             {
                 motorTimer = 0;
                 isStartMotor = false;
-                Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+
+                Gamepad gamepad = playerInput.GetDevice<Gamepad>();
+                gamepad.SetMotorSpeeds(0f, 0f);
             }
         }
 
@@ -186,7 +190,9 @@ public class InputManager : MonoBehaviour
         {
             motorTimer = 0;
             isStartMotor = false;
-            Gamepad.current.SetMotorSpeeds(0.0f, 0.0f);
+
+            Gamepad gamepad = playerInput.GetDevice<Gamepad>();
+            gamepad.SetMotorSpeeds(0f, 0f);
         }
     }
 }
