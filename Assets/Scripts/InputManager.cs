@@ -137,6 +137,7 @@ public class InputManager : MonoBehaviour
                 }
 
                 PlayerManager.instance.EnableNextSelect(playerInput);
+                playerController.ColorUpdate();
             }
         }
     }
@@ -156,6 +157,7 @@ public class InputManager : MonoBehaviour
                 }
 
                 PlayerManager.instance.EnableNextSelect(playerInput);
+                playerController.ColorUpdate();
             }
         }
     }

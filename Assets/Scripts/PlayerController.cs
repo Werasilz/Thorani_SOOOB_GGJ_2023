@@ -85,6 +85,25 @@ public class PlayerController : MonoBehaviour
         {
             renderer.material = PlayerManager.instance.colorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
         }
+
+        if (playerInput.playerIndex == 0)
+        {
+            PlayerManager.instance.p1ScoreImage.sprite = PlayerManager.instance.scoreColorSprites[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+
+            foreach (var image in PlayerManager.instance.p1SkillImage)
+            {
+                image.sprite = PlayerManager.instance.skillColorSprites[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+            }
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            PlayerManager.instance.p2ScoreImage.sprite = PlayerManager.instance.scoreColorSprites[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+
+            foreach (var image in PlayerManager.instance.p2SkillImage)
+            {
+                image.sprite = PlayerManager.instance.skillColorSprites[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+            }
+        }
     }
 
     public void StateUpdate(PlayerState newPlayerState)

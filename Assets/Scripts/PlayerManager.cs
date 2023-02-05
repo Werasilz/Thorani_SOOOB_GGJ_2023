@@ -45,6 +45,16 @@ public class PlayerManager : MonoBehaviour
     public Image[] p1ColorImage;
     public Image[] p2ColorImage;
 
+    [Header("Player UI")]
+    public Image p1ScoreImage;
+    public Image p2ScoreImage;
+    public Image[] p1SkillImage;
+    public Image[] p2SkillImage;
+
+    [Header("Sprites Player Color UI")]
+    public Sprite[] skillColorSprites;
+    public Sprite[] scoreColorSprites;
+
     private void Awake()
     {
         instance = this;

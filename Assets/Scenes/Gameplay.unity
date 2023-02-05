@@ -435,7 +435,7 @@ GameObject:
   - component: {fileID: 46096270}
   - component: {fileID: 46096269}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill A BG P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3254,7 +3254,7 @@ GameObject:
   - component: {fileID: 349490367}
   - component: {fileID: 349490366}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill B BG P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3300,7 +3300,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a0e224779680994dbc9abd9dfbb9416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b705dd931935c9c4ba516d10eada8745, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3778,7 +3778,7 @@ GameObject:
   - component: {fileID: 396921194}
   - component: {fileID: 396921193}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill B BG P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4210,11 +4210,11 @@ MonoBehaviour:
   playerSelectIndex: 0000000000000000
   isSelected: 0000
   colorMaterials:
-  - {fileID: 2100000, guid: b892a9cbbfc3262408e951c76fdc7cd1, type: 2}
-  - {fileID: 2100000, guid: ca5da07af9e1a424a9639b67946e6d1a, type: 2}
-  - {fileID: 2100000, guid: 91436af2fb4cf9944bdaf1ca7b26115c, type: 2}
+  - {fileID: 2100000, guid: f7b2a9e3b6050364d8dfd76a6db52b0f, type: 2}
+  - {fileID: 2100000, guid: 35fffee03e1b9394d8a9f7605b45185f, type: 2}
+  - {fileID: 2100000, guid: a0fd8dcc54a80634cba26d8b9e9eff90, type: 2}
+  - {fileID: 2100000, guid: 4bcf7fdf0e115844d9c3d4535d24dc98, type: 2}
   - {fileID: 2100000, guid: bb48bc0a274d1bd4f82f3651bdffbdf7, type: 2}
-  - {fileID: 2100000, guid: d6c6e449409dbff4ba91555062c494bc, type: 2}
   p1ColorImage:
   - {fileID: 1241671522}
   - {fileID: 808421312}
@@ -4227,6 +4227,28 @@ MonoBehaviour:
   - {fileID: 1389322347}
   - {fileID: 989713461}
   - {fileID: 1325727596}
+  p1ScoreImage: {fileID: 903175446}
+  p2ScoreImage: {fileID: 1286927979}
+  p1SkillImage:
+  - {fileID: 46096269}
+  - {fileID: 396921193}
+  - {fileID: 1024711376}
+  p2SkillImage:
+  - {fileID: 1477893420}
+  - {fileID: 349490366}
+  - {fileID: 994695825}
+  skillColorSprites:
+  - {fileID: 21300000, guid: b705dd931935c9c4ba516d10eada8745, type: 3}
+  - {fileID: 21300000, guid: b680a61b4d573114491e143457c55f32, type: 3}
+  - {fileID: 21300000, guid: 2fa7c261cabb81645b59ff940df6aa4d, type: 3}
+  - {fileID: 21300000, guid: 2a0e224779680994dbc9abd9dfbb9416, type: 3}
+  - {fileID: 21300000, guid: d9dd3cc68c0a7d940b5adc6db4de973e, type: 3}
+  scoreColorSprites:
+  - {fileID: 21300000, guid: 0cf6ac1102bad3742b39daa237b929f5, type: 3}
+  - {fileID: 21300000, guid: f339fb034abd8a74694d074eb7f9c4f3, type: 3}
+  - {fileID: 21300000, guid: a28659acb2968184a85f753e05d20895, type: 3}
+  - {fileID: 21300000, guid: 712e38d9ca4fbd7469ae6e779bde2c14, type: 3}
+  - {fileID: 21300000, guid: 7deda8cef1498624aa9ec55de1286c6d, type: 3}
 --- !u!1 &485559384
 GameObject:
   m_ObjectHideFlags: 0
@@ -9005,7 +9027,7 @@ GameObject:
   - component: {fileID: 903175447}
   - component: {fileID: 903175446}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Score Image P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10257,7 +10279,7 @@ GameObject:
   - component: {fileID: 994695826}
   - component: {fileID: 994695825}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill C BG P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10303,7 +10325,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a0e224779680994dbc9abd9dfbb9416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b705dd931935c9c4ba516d10eada8745, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10364,7 +10386,7 @@ GameObject:
   - component: {fileID: 1024711377}
   - component: {fileID: 1024711376}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill C BG P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10564,7 +10586,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1057381310
 Transform:
   m_ObjectHideFlags: 0
@@ -12780,7 +12802,7 @@ GameObject:
   - component: {fileID: 1286927980}
   - component: {fileID: 1286927979}
   m_Layer: 5
-  m_Name: BG
+  m_Name: Score Image P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12826,7 +12848,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 712e38d9ca4fbd7469ae6e779bde2c14, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0cf6ac1102bad3742b39daa237b929f5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -15800,7 +15822,7 @@ GameObject:
   - component: {fileID: 1477893421}
   - component: {fileID: 1477893420}
   m_Layer: 5
-  m_Name: Skill BG
+  m_Name: Skill A BG P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15846,7 +15868,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 2a0e224779680994dbc9abd9dfbb9416, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b705dd931935c9c4ba516d10eada8745, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
