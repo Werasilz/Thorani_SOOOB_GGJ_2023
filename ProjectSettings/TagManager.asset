@@ -9,6 +9,8 @@ TagManager:
   - RootLine
   - RootWall
   - RootSpin
+  - FxTemporaire
+  - RootTrap
   layers:
   - Default
   - TransparentFX

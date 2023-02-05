@@ -133,7 +133,7 @@ public class RootSkill : MonoBehaviour
         animation.clip = reverseRootSpin;
         animation.Play();
 
-        PlayerManager.instance.AddPlayerScore(playerInput, 1);
+        PlayerManager.instance.AddPlayerScore(playerInput, rootSpinCollider.GetComponentInChildren<EnemyController>().enemyScore);
 
         Destroy(animation.transform.parent.gameObject, 1);
     }

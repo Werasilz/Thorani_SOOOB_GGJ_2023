@@ -6830,9 +6830,13 @@ MonoBehaviour:
   spawnRange: 10
   enemies: []
   maxEnemyInMap: 20
-  minSpawnPerWave: 5
-  maxSpawnPerWave: 8
-  waveRange: 5
+  minMaxSPawnPerWave:
+  - {x: 1, y: 3}
+  - {x: 3, y: 4}
+  - {x: 4, y: 6}
+  - {x: 6, y: 8}
+  - {x: 5, y: 10}
+  waveRange: 15
   spawning: 1
 --- !u!4 &753024138
 Transform:

@@ -25,6 +25,8 @@ public class TrapSkillY : MonoBehaviour
         startModel.SetActive(true);
         finalModel.SetActive(false);
 
+        GetComponent<Collider>().enabled = false;
+
         yield return new WaitForSeconds(delayChange);
 
         startModel.GetComponentInChildren<Animator>().SetTrigger("isActivate");
@@ -37,6 +39,32 @@ public class TrapSkillY : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         GetComponent<Collider>().enabled = true;
+    }
+    IEnumerator KillEnemy()
+    {
+        yield return new WaitForSeconds(1f);
+
+        EnemyController enemy = target.GetComponent<EnemyController>();
+
+        enemy.currentHP -= 1;
+        if (enemy.currentHP <= 0)
+        {
+            // kill enemy
+            enemy.transform.SetParent(finalModel.GetComponentInChildren<Animator>().transform);
+
+            // add score
+            PlayerManager.instance.AddPlayerScore(playerInput, target.GetComponent<EnemyController>().enemyScore);
+        }
+        else
+        {
+            // free enemy
+            enemy.EnableAgent(true);
+        }
+
+        finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
+
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -54,33 +82,14 @@ public class TrapSkillY : MonoBehaviour
                 StartCoroutine(KillEnemy());
             }
         }
+
+        if (other.gameObject.CompareTag("RootWall") || other.gameObject.CompareTag("Player"))
+        {
+            GetComponent<Collider>().enabled = false;
+            finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
+            Destroy(gameObject, 1f);
+        }
     }
 
-    IEnumerator KillEnemy()
-    {
-        yield return new WaitForSeconds(1f);
-
-        EnemyController enemy = target.GetComponent<EnemyController>();
-
-        enemy.currentHP -= 1;
-        if (enemy.currentHP <= 0)
-        {
-            // kill enemy
-            enemy.transform.SetParent(finalModel.GetComponentInChildren<Animator>().transform);
-
-            // add score
-            PlayerManager.instance.AddPlayerScore(playerInput, 1);
-        }
-        else
-        {
-            // free enemy
-            enemy.EnableAgent(true);
-        }
-
-        finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
-
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
-    }
 
 }

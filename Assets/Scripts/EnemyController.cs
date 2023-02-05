@@ -7,8 +7,12 @@ public class EnemyController : MonoBehaviour
 {
     public EnemySkinController enemySkinController;
 
-    public float maxHP;
+    public float maxHP = 1;
     public float currentHP;
+
+    public int enemyScore = 1;
+
+
     public float radius;
     public bool playerInArea;
 
@@ -31,6 +35,8 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         enemySkinController.RandomSkinAndEquipment();
+
+        currentHP = maxHP;
     }
 
     private void FixedUpdate()

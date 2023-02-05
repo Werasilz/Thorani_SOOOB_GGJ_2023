@@ -11,8 +11,8 @@ public class SpawnManager : MonoBehaviour
 
     public int maxEnemyInMap;
 
-    public int minSpawnPerWave;
-    public int maxSpawnPerWave;
+    public Vector2Int[] minMaxSPawnPerWave;
+
     public float waveRange;
 
     public bool spawning;
@@ -23,6 +23,8 @@ public class SpawnManager : MonoBehaviour
     }
     IEnumerator StartSpawnEnemy()
     {
+        int wave = 0;
+
         while (spawning)
         {
             yield return new WaitForSeconds(waveRange);
@@ -38,7 +40,10 @@ public class SpawnManager : MonoBehaviour
 
             if (enemies.Count < maxEnemyInMap)
             {
-                int countToSpawn = Random.Range(minSpawnPerWave, maxSpawnPerWave);
+                if (wave >= minMaxSPawnPerWave.Length)
+                    wave = minMaxSPawnPerWave.Length - 1;
+
+                int countToSpawn = Random.Range(minMaxSPawnPerWave[wave].x, minMaxSPawnPerWave[wave].y);
 
                 for (int i = 0; i < countToSpawn; i++)
                 {
@@ -46,6 +51,8 @@ public class SpawnManager : MonoBehaviour
 
                     CreateEnemy();
                 }
+
+                wave++;
             }
         }
     }
