@@ -36,6 +36,8 @@ public class PlayerManager : MonoBehaviour
     public TextMeshProUGUI[] playersScoreText;
     public TextMeshProUGUI[] playersLevelText;
 
+    public GameObject logo;
+
     [Header("Choose Color")]
     public GameObject chooseColorMenu;
     public int[] playerSelectIndex;

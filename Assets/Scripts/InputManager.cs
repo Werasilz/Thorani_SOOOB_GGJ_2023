@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class InputManager : MonoBehaviour
 {
@@ -34,6 +35,8 @@ public class InputManager : MonoBehaviour
                     PlayerManager.instance.dayNightManager.StartNight();
                     PlayerManager.instance.chooseColorMenu.SetActive(false);
                     PlayerManager.instance.timeManager.StartCounting();
+
+                    PlayerManager.instance.logo.SetActive(false);
                 }
             }
         }
@@ -44,12 +47,14 @@ public class InputManager : MonoBehaviour
             {
                 if (!playerController.abilityController.abilitys[0].isCooldown)
                 {
+                    playerController.playerPopup.shoot.SetActive(true);
                     playerController.StateUpdate(PlayerState.ShootState);
                 }
             }
             // Start active root
             else if (playerController.playerState == PlayerState.ShootState)
             {
+                playerController.playerPopup.shoot.SetActive(false);
                 playerController.abilityController.CastSkill(0);
             }
         }
@@ -105,6 +110,31 @@ public class InputManager : MonoBehaviour
 
     public void OnRB(InputValue value)
     {
+    }
+
+    public void OnSelect(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilityUIManager.abilityUIs[0].EnableSkillIcon();
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilityUIManager.abilityUIs[1].EnableSkillIcon();
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilityUIManager.abilityUIs[2].EnableSkillIcon();
+
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilitys[0].isUnlock = true;
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilitys[1].isUnlock = true;
+            PlayerManager.instance.playerControllers[playerInput.playerIndex].abilityController.abilitys[2].isUnlock = true;
+        }
+    }
+
+    public void OnStart(InputValue value)
+    {
+        if (value.isPressed)
+        {
+            if (PlayerManager.instance.timeManager.isEndGame)
+            {
+                SceneManager.LoadScene(0);
+            }
+        }
     }
 
     public void OnStickUp(InputValue value)

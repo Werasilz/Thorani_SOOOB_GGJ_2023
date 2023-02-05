@@ -152,6 +152,24 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Value"",
+                    ""id"": ""4253ab39-19a3-4e1e-9c04-816afe148d96"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Start"",
+                    ""type"": ""Value"",
+                    ""id"": ""47e70f77-9759-48a1-9043-473cf8b4eb79"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -473,6 +491,28 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                     ""action"": ""DPadRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac4c8eef-beb8-4f07-87e7-97a4e9c5441a"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d4ed798-46d6-4870-89db-0cfe928704ab"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Start"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -495,6 +535,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         m_Player_StickDown = m_Player.FindAction("StickDown", throwIfNotFound: true);
         m_Player_DPadLeft = m_Player.FindAction("DPadLeft", throwIfNotFound: true);
         m_Player_DPadRight = m_Player.FindAction("DPadRight", throwIfNotFound: true);
+        m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
+        m_Player_Start = m_Player.FindAction("Start", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -568,6 +610,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_StickDown;
     private readonly InputAction m_Player_DPadLeft;
     private readonly InputAction m_Player_DPadRight;
+    private readonly InputAction m_Player_Select;
+    private readonly InputAction m_Player_Start;
     public struct PlayerActions
     {
         private @SimpleControls m_Wrapper;
@@ -586,6 +630,8 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         public InputAction @StickDown => m_Wrapper.m_Player_StickDown;
         public InputAction @DPadLeft => m_Wrapper.m_Player_DPadLeft;
         public InputAction @DPadRight => m_Wrapper.m_Player_DPadRight;
+        public InputAction @Select => m_Wrapper.m_Player_Select;
+        public InputAction @Start => m_Wrapper.m_Player_Start;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -637,6 +683,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @DPadRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
                 @DPadRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
                 @DPadRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDPadRight;
+                @Select.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Start.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                @Start.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
+                @Start.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnStart;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -683,6 +735,12 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
                 @DPadRight.started += instance.OnDPadRight;
                 @DPadRight.performed += instance.OnDPadRight;
                 @DPadRight.canceled += instance.OnDPadRight;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
+                @Start.started += instance.OnStart;
+                @Start.performed += instance.OnStart;
+                @Start.canceled += instance.OnStart;
             }
         }
     }
@@ -703,5 +761,7 @@ public partial class @SimpleControls : IInputActionCollection2, IDisposable
         void OnStickDown(InputAction.CallbackContext context);
         void OnDPadLeft(InputAction.CallbackContext context);
         void OnDPadRight(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
+        void OnStart(InputAction.CallbackContext context);
     }
 }

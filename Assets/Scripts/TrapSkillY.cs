@@ -38,6 +38,14 @@ public class TrapSkillY : MonoBehaviour
         startModel.SetActive(false);
         finalModel.SetActive(true);
 
+        // Set color
+        Renderer[] rootRenderers = finalModel.GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in rootRenderers)
+        {
+            renderer.material = PlayerManager.instance.rootSpinColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+        }
+
         yield return new WaitForSeconds(1f);
 
         GetComponent<Collider>().enabled = true;

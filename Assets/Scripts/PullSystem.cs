@@ -51,6 +51,7 @@ public class PullSystem
             playerController.rootSkill.rootSpinCollider.GetComponentInChildren<EnemyController>().EnableAgent(true);
             playerController.rootSkill.rootSpinCollider.transform.GetChild(1).parent = null;
             playerController.rootSkill.StartReverseRoot();
+            playerController.playerPopup.analogRight.SetActive(false);
         }
     }
 
@@ -68,6 +69,7 @@ public class PullSystem
             // Destroy enemy
             Animation rootSpinAnim = playerController.rootSkill.rootSpinCollider.GetComponentInChildren<Animation>();
             playerController.rootSkill.ReverseSingleRootSpin(rootSpinAnim);
+            playerController.playerPopup.analogRight.SetActive(false);
         }
     }
 

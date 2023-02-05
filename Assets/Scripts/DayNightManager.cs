@@ -7,6 +7,7 @@ using UnityEngine.Rendering.Universal;
 public class DayNightManager : MonoBehaviour
 {
     public Animator ground;
+    public Animator wall;
     public Volume profile;
     private bool isNight;
     private bool isDay;
@@ -23,6 +24,7 @@ public class DayNightManager : MonoBehaviour
     public void StartNight()
     {
         ground.CrossFade("DayToNight", 0.01f);
+        wall.CrossFade("GoUP", 0.01f);
         SoundManager.Instance.PlayMusic(SoundManager.Instance.musicClips[1]);
         isNight = true;
         isDay = false;
@@ -32,6 +34,7 @@ public class DayNightManager : MonoBehaviour
     public void StartDay()
     {
         ground.CrossFade("NightToDay", 0.01f);
+        wall.CrossFade("GoDOWN", 0.01f);
         SoundManager.Instance.PlayMusic(SoundManager.Instance.musicClips[0]);
         isNight = false;
         isDay = true;

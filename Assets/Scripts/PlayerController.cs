@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     PlayerInput playerInput => GetComponent<PlayerInput>();
     [HideInInspector] public InputManager inputManager => GetComponent<InputManager>();
     [HideInInspector] public AbilityController abilityController => GetComponent<AbilityController>();
+    [HideInInspector] public PlayerPopup playerPopup => GetComponentInChildren<PlayerPopup>();
     [HideInInspector] public Transform centerDirection;
 
     [Header("System")]
@@ -198,6 +199,7 @@ public class PlayerController : MonoBehaviour
         rotatable = false;
         shootingArea.SetActive(false);
         StartCoroutine(ActiveRoot());
+        playerPopup.analogRight.SetActive(true);
 
         IEnumerator ActiveRoot()
         {
@@ -219,6 +221,8 @@ public class PlayerController : MonoBehaviour
                 rootSkill = null;
 
                 StateUpdate(PlayerState.MoveState);
+
+                playerPopup.analogRight.SetActive(false);
             }
         }
     }

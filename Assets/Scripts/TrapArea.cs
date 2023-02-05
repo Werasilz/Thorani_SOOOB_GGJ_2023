@@ -31,6 +31,14 @@ public class TrapArea : MonoBehaviour
     {
         countSpawnTrap = 0;
 
+        // Set color
+        MeshRenderer[] rootRenderers = GetComponentsInChildren<MeshRenderer>();
+
+        foreach (var renderer in rootRenderers)
+        {
+            renderer.material = PlayerManager.instance.rootLineColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+        }
+
         while (countSpawnTrap < spawnTrapLimit)
         {
             int spawnIndex = Random.Range(0, trapSpawnPoints.Count);
