@@ -82,6 +82,10 @@ public class TrapSkillY : MonoBehaviour
                     GetComponent<Collider>().enabled = false;
                     finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
                     burningParticle.SetActive(true);
+                    burningParticle.transform.SetParent(null);
+
+                    Destroy(gameObject, 5f);
+                    Invoke(nameof(StopParticle), 2f);
                     Destroy(gameObject, 2f);
                 }
                 else
@@ -101,6 +105,11 @@ public class TrapSkillY : MonoBehaviour
             finalModel.GetComponentInChildren<Animator>().SetTrigger("goDown");
             Destroy(gameObject, 1f);
         }
+    }
+
+    void StopParticle()
+    {
+        burningParticle.GetComponent<ParticleSystem>().Stop(true);
     }
 
 
