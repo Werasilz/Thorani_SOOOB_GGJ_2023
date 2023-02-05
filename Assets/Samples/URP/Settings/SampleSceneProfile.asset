@@ -99,13 +99,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   temperature:
     m_OverrideState: 1
-    m_Value: -31
+    m_Value: 0
   tint:
     m_OverrideState: 1
-    m_Value: 16
+    m_Value: 0
 --- !u!114 &761351042763053964
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -120,8 +120,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   postExposure:
-    m_OverrideState: 0
-    m_Value: 1.18
+    m_OverrideState: 1
+    m_Value: 1
   contrast:
     m_OverrideState: 1
     m_Value: 32
@@ -132,7 +132,7 @@ MonoBehaviour:
     m_OverrideState: 0
     m_Value: 0
   saturation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: -4
 --- !u!114 &849379129802519247
 MonoBehaviour:

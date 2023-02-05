@@ -9,6 +9,8 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager instance;
 
+    public DayNightManager dayNightManager;
+
     [Header("State")]
     public GameState gameState;
 
