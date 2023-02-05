@@ -6,6 +6,7 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
 
+
     public float spawnRange;
     public List<GameObject> enemies;
 

@@ -230,4 +230,10 @@ public class InputManager : MonoBehaviour
             gamepad.SetMotorSpeeds(0f, 0f);
         }
     }
+
+    private void OnDestroy()
+    {
+        Gamepad gamepad = playerInput.GetDevice<Gamepad>();
+        gamepad.SetMotorSpeeds(0f, 0f);
+    }
 }
