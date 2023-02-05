@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager instance;
 
     public DayNightManager dayNightManager;
+    public TimeManager timeManager;
 
     [Header("Enemys")]
     public GameObject enemyGroup;
@@ -39,7 +40,8 @@ public class PlayerManager : MonoBehaviour
     public GameObject chooseColorMenu;
     public int[] playerSelectIndex;
     public bool[] isSelected;
-    public Material[] colorMaterials;
+    public Material[] rootLineColorMaterials;
+    public Material[] rootSpinColorMaterials;
 
     [Header("Choose Color UI")]
     public Image[] p1ColorImage;

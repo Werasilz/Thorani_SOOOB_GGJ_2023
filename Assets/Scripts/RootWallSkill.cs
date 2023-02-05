@@ -46,6 +46,14 @@ public class RootWallSkill : MonoBehaviour
 
         spawnPos.RemoveAt(0);
 
+        // Set color
+        Renderer[] rootRenderers = rootLinePrefab.GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in rootRenderers)
+        {
+            renderer.material = PlayerManager.instance.rootLineColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+        }
+
         for (int i = 0; i < spawnPos.Count; i++)
         {
             // Spawn root

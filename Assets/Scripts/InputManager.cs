@@ -33,6 +33,7 @@ public class InputManager : MonoBehaviour
                     PlayerManager.instance.MakeEnemyRun();
                     PlayerManager.instance.dayNightManager.StartNight();
                     PlayerManager.instance.chooseColorMenu.SetActive(false);
+                    PlayerManager.instance.timeManager.StartCounting();
                 }
             }
         }

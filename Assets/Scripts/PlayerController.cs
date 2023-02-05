@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         foreach (var renderer in characterRenderers)
         {
-            renderer.material = PlayerManager.instance.colorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+            renderer.material = PlayerManager.instance.rootLineColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
         }
 
         if (playerInput.playerIndex == 0)
@@ -229,8 +229,8 @@ public class PlayerController : MonoBehaviour
 
         // Spawn root
         RootWallSkill rootWallSkill = newRootWallSkill.GetComponent<RootWallSkill>();
-        rootWallSkill.StartSpawnRootWall();
         rootWallSkill.playerInput = playerInput;
+        rootWallSkill.StartSpawnRootWall();
 
         newRootWallSkill.transform.parent = null;
     }

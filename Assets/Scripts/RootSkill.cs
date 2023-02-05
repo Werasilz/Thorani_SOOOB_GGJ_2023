@@ -60,6 +60,22 @@ public class RootSkill : MonoBehaviour
             spawnPos.Add(newPos);
         }
 
+        // Set color
+        Renderer[] rootLineRenderers = rootLinePrefab.GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in rootLineRenderers)
+        {
+            renderer.material = PlayerManager.instance.rootLineColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+        }
+
+        // Set color
+        Renderer[] rootSpinRenderers = rootSpinPrefab.GetComponentsInChildren<Renderer>();
+
+        foreach (var renderer in rootSpinRenderers)
+        {
+            renderer.material = PlayerManager.instance.rootSpinColorMaterials[PlayerManager.instance.playerSelectIndex[playerInput.playerIndex]];
+        }
+
         for (int i = 0; i < spawnPos.Count; i++)
         {
             GameObject newRoot;
