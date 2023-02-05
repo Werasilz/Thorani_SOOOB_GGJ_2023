@@ -21,6 +21,8 @@ public class PlayerManager : MonoBehaviour
     public TextMeshProUGUI pressStartTextP1;
     public TextMeshProUGUI pressStartTextP2;
 
+    public TextMeshProUGUI[] playersScoreText;
+    public TextMeshProUGUI[] playersLevelText;
 
     [Header("Choose Color")]
     public int[] playerSelectIndex;
@@ -142,6 +144,9 @@ public class PlayerScore
 
         if (playerLevel > 5)
             playerLevel = 5;
+
+        PlayerManager.instance.playersScoreText[playerInput.playerIndex].text = score.ToString("F0");
+        PlayerManager.instance.playersLevelText[playerInput.playerIndex].text = "Lv " + playerLevel.ToString("F0");
 
         UpdateLevel();
     }

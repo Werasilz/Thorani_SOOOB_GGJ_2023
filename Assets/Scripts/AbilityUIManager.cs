@@ -16,6 +16,7 @@ public class AbilityUI
     public Image skill_fill;
     public Image skill_lock;
     public TextMeshProUGUI cooldownText;
+    public Animator skillUIAnim;
 
     public void ShowCooldown(float _maxCooldown, float _currentCooldown)
     {
@@ -24,6 +25,8 @@ public class AbilityUI
             skill_black.enabled = true;
             cooldownText.enabled = true;
             skill_fill.enabled = true;
+
+            skillUIAnim.SetBool("isEnable", false);
         }
 
         cooldownText.text = _currentCooldown.ToString("F1");
@@ -36,5 +39,7 @@ public class AbilityUI
         skill_black.enabled = false;
         skill_fill.enabled = false;
         cooldownText.enabled = false;
+
+        skillUIAnim.SetBool("isEnable", true);
     }
 }
