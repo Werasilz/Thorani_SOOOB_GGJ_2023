@@ -26,6 +26,12 @@ public class InputManager : MonoBehaviour
             if (!PlayerManager.instance.isSelected[playerInput.playerIndex] && PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] != PlayerManager.instance.playerSelectIndex[(playerInput.playerIndex + 1) % 2])
             {
                 PlayerManager.instance.isSelected[playerInput.playerIndex] = true;
+
+                if (PlayerManager.instance.isSelected[0] && PlayerManager.instance.isSelected[1])
+                {
+                    PlayerManager.instance.gameState = GameState.GameplayState;
+                    PlayerManager.instance.chooseColorMenu.SetActive(false);
+                }
             }
         }
         else if (PlayerManager.instance.gameState == GameState.GameplayState)
