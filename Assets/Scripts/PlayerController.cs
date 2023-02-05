@@ -49,8 +49,11 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         // Movement
-        Move(inputManager.direction);
-        Rotate();
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
+        {
+            Move(inputManager.direction);
+            Rotate();
+        }
 
         // Update gamepad motor
         inputManager.CooldownGamepadMotor();

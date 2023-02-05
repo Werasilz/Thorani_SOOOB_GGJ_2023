@@ -21,45 +21,64 @@ public class InputManager : MonoBehaviour
 
     public void OnA(InputValue value)
     {
-        // Change move state to shoot state
-        if (playerController.playerState == PlayerState.MoveState)
+        if (PlayerManager.instance.gameState == GameState.ChooseColorState)
         {
-            if (!playerController.abilityController.abilitys[0].isCooldown)
+            if (!PlayerManager.instance.isSelected[playerInput.playerIndex] && PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] != PlayerManager.instance.playerSelectIndex[(playerInput.playerIndex + 1) % 2])
             {
-                playerController.StateUpdate(PlayerState.ShootState);
+                PlayerManager.instance.isSelected[playerInput.playerIndex] = true;
             }
         }
-        // Start active root
-        else if (playerController.playerState == PlayerState.ShootState)
+        else if (PlayerManager.instance.gameState == GameState.GameplayState)
         {
-            playerController.abilityController.CastSkill(0);
+            // Change move state to shoot state
+            if (playerController.playerState == PlayerState.MoveState)
+            {
+                if (!playerController.abilityController.abilitys[0].isCooldown)
+                {
+                    playerController.StateUpdate(PlayerState.ShootState);
+                }
+            }
+            // Start active root
+            else if (playerController.playerState == PlayerState.ShootState)
+            {
+                playerController.abilityController.CastSkill(0);
+            }
         }
     }
 
     public void OnB(InputValue value)
     {
-        if (playerController.playerState == PlayerState.PullState)
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
         {
-            playerController.pullSystem.Detach();
-            playerController.pullSystem.ResetPull();
-        }
+            if (playerController.playerState == PlayerState.PullState)
+            {
+                playerController.pullSystem.Detach();
+                playerController.pullSystem.ResetPull();
+            }
 
-        playerController.StateUpdate(PlayerState.MoveState);
+            playerController.StateUpdate(PlayerState.MoveState);
+        }
     }
 
     public void OnX(InputValue value)
     {
-        if (playerController.playerState == PlayerState.MoveState)
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
         {
-            playerController.abilityController.CastSkill(1);
+            if (playerController.playerState == PlayerState.MoveState)
+            {
+                playerController.abilityController.CastSkill(1);
+            }
         }
     }
 
     public void OnY(InputValue value)
     {
-        if (playerController.playerState == PlayerState.MoveState)
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
         {
-            playerController.abilityController.CastSkill(2);
+            if (playerController.playerState == PlayerState.MoveState)
+            {
+                playerController.abilityController.CastSkill(2);
+            }
         }
     }
 
@@ -81,19 +100,25 @@ public class InputManager : MonoBehaviour
 
     public void OnStickUp(InputValue value)
     {
-        playerController.Pull();
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
+        {
+            playerController.Pull();
+        }
     }
 
     public void OnStickDown(InputValue value)
     {
-        playerController.Pull();
+        if (PlayerManager.instance.gameState == GameState.GameplayState)
+        {
+            playerController.Pull();
+        }
     }
 
     public void OnDPadLeft(InputValue value)
     {
         if (PlayerManager.instance.gameState == GameState.ChooseColorState)
         {
-            if (value.isPressed)
+            if (value.isPressed && !PlayerManager.instance.isSelected[playerInput.playerIndex])
             {
                 PlayerManager.instance.DisableLastSelect(playerInput);
                 PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] -= 1;
@@ -112,7 +137,7 @@ public class InputManager : MonoBehaviour
     {
         if (PlayerManager.instance.gameState == GameState.ChooseColorState)
         {
-            if (value.isPressed)
+            if (value.isPressed && !PlayerManager.instance.isSelected[playerInput.playerIndex])
             {
                 PlayerManager.instance.DisableLastSelect(playerInput);
                 PlayerManager.instance.playerSelectIndex[playerInput.playerIndex] += 1;

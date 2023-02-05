@@ -25,6 +25,9 @@ public class AbilityController : MonoBehaviour
 
     public void CastSkill(int _skillIndex)
     {
+        if (PlayerManager.instance.gameState != GameState.GameplayState)
+            return;
+
         if (!abilitys[_skillIndex].isUnlock)
             return;
 

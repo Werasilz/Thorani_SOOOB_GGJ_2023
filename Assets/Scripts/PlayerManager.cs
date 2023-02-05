@@ -26,6 +26,7 @@ public class PlayerManager : MonoBehaviour
 
     [Header("Choose Color")]
     public int[] playerSelectIndex;
+    public bool[] isSelected;
     public GameObject chooseColorMenu;
     public Image[] p1ColorImage;
     public Image[] p2ColorImage;
@@ -40,6 +41,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        chooseColorMenu.SetActive(false);
         gameState = GameState.WaitingState;
     }
 
@@ -74,6 +76,9 @@ public class PlayerManager : MonoBehaviour
         {
             gameState = GameState.ChooseColorState;
 
+            pressStartTextP1.gameObject.SetActive(false);
+            pressStartTextP2.gameObject.SetActive(false);
+
             chooseColorMenu.SetActive(true);
         }
 
@@ -83,12 +88,12 @@ public class PlayerManager : MonoBehaviour
         // Hide text
         if (playerInput.playerIndex == 0)
         {
-            pressStartTextP1.gameObject.SetActive(false);
+            pressStartTextP1.text = "Waiting";
             p1ColorImage[playerSelectIndex[playerInput.playerIndex]].enabled = true;
         }
         else if (playerInput.playerIndex == 1)
         {
-            pressStartTextP2.gameObject.SetActive(false);
+            pressStartTextP2.text = "Waiting";
             p2ColorImage[playerSelectIndex[playerInput.playerIndex]].enabled = true;
         }
 
