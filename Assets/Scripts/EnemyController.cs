@@ -141,6 +141,11 @@ public class EnemyController : MonoBehaviour
             {
                 onGround = true;
 
+                if (PlayerManager.instance.gameState == GameState.GameplayState)
+                {
+                    GetComponentInChildren<Animator>().CrossFade("Jump", 0.01f);
+                }
+
                 EnableAgent(true);
 
                 SetWander();

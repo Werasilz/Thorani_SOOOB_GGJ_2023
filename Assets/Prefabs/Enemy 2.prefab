@@ -1218,7 +1218,7 @@ MonoBehaviour:
   maxHP: 1
   currentHP: 0
   enemyScore: 2
-  touch: {fileID: 0}
+  touch: {fileID: 1266979659759607814}
   holdingTouch: 0
   radius: 5.5
   playerInArea: 0

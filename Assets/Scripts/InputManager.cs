@@ -30,6 +30,7 @@ public class InputManager : MonoBehaviour
                 if (PlayerManager.instance.isSelected[0] && PlayerManager.instance.isSelected[1])
                 {
                     PlayerManager.instance.gameState = GameState.GameplayState;
+                    PlayerManager.instance.MakeEnemyRun();
                     PlayerManager.instance.dayNightManager.StartNight();
                     PlayerManager.instance.chooseColorMenu.SetActive(false);
                 }

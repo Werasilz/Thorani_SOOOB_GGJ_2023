@@ -65,10 +65,10 @@ public class SpawnManager : MonoBehaviour
         Vector3 randomSpawnPoint = new Vector3(Random.Range(-spawnRange, spawnRange), 0, Random.Range(-spawnRange, spawnRange));
 
         GameObject enemyClone = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], transform.position + randomSpawnPoint, q);
+        enemyClone.transform.parent = PlayerManager.instance.enemyGroup.transform;
 
         EnemyController enemy = enemyClone.GetComponent<EnemyController>();
         enemy.EnableAgent(false);
-
         enemies.Add(enemyClone);
     }
 }

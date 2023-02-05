@@ -11,6 +11,9 @@ public class PlayerManager : MonoBehaviour
 
     public DayNightManager dayNightManager;
 
+    [Header("Enemys")]
+    public GameObject enemyGroup;
+
     [Header("State")]
     public GameState gameState;
 
@@ -106,6 +109,15 @@ public class PlayerManager : MonoBehaviour
         }
 
         Debug.Log(string.Format("PlayerInput {0} Joined", playerInput.playerIndex));
+    }
+
+    public void MakeEnemyRun()
+    {
+        EnemyController[] enemyControllers = enemyGroup.GetComponentsInChildren<EnemyController>();
+        for (int i = 0; i < enemyControllers.Length; i++)
+        {
+            enemyControllers[i].GetComponentInChildren<Animator>().CrossFade("Jump", 0.01f);
+        }
     }
 
     public void DisableLastSelect(PlayerInput playerInput)
