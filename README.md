@@ -8,11 +8,11 @@ This is a story about a cannibal forest where there is frequent news of tourists
 ## Features
 **Player Ability**
 - Shooting roots to catch people.
-- Place roots wall to block the path and also can destroy shooting roots of another player.
-- Roots trap for catch people who walk into it.
+- Place roots wall to block the path and destroy another player's shooting roots.
+- Roots trap for catching people who walk into it.
 
 **How to play**\
-Use your skill to catch people and then pull them down to the ground to get scores.
+Use your skill to catch people and pull them down to the ground to get scores.
 
 **Controls**\
 Play with 2 Gamepad or Gamepad and Keyboard.
