@@ -11,5 +11,6 @@ Player Ablity
 - Roots trap for catch people who walk into it.
 
 ## Screenshots
-Include some screenshots or GIFs that showcase your game.
-![Screenshot](images/screenshot1.gif)
+![Screenshot1](images/screenshot1.gif)
+![Screenshot2](images/screenshot2.gif)
+![Screenshot3](images/screenshot3.gif)
