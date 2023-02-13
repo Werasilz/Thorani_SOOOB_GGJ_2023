@@ -10,23 +10,12 @@ This is a story about a cannibal forest where there is frequent news of tourists
 - Place roots wall to block the path and also can destroy shooting roots of another player.
 - Roots trap for catch people who walk into it.
 
-**Controls**
-- Play with 2 Gamepad or Gamepad and Keyboard
-
-## Screenshots
-![Screenshot1](images/screenshot1.gif)
-![Screenshot2](images/screenshot2.gif)
-![Screenshot3](images/screenshot3.gif)
-
-## Technical Details
-- Unity 2021.3.16f1
-- Maya
-- Blender
-
-## How to Play
+**How to play**\
 Use your skill to catch people and then pull them down to the ground to get scores
 
-**Controls**
+**Controls**\
+Play with 2 Gamepad or Gamepad and Keyboard
+
 | Gamepad | Keyboard | Description |
 | ------------- | ------------- | ------------- |
 | Start | Spacebar | Join Game |
@@ -38,14 +27,22 @@ Use your skill to catch people and then pull them down to the ground to get scor
 | Y | I | Skill 3 Place roots trap |
 | B | K | Cancel Skill |
 
-## License
+## Screenshots
+![Screenshot1](images/screenshot1.gif)
+![Screenshot2](images/screenshot2.gif)
+![Screenshot3](images/screenshot3.gif)
 
+## Technical Details
+- Unity 2021.3.16f1
+- Maya
+- Blender
 
 ## Credits
-Werasil Rerkweang - Programmer
-Thanapat Pongprasertsin - Programmer
-Patcharaon Chumnuson - 3D Artist
-Rapipol Chanklan - 3D Artist 
+Werasil Rerkweang - Programmer\
+Thanapat Pongprasertsin - Programmer\
+Patcharaon Chumnuson - 3D Artist\
+Rapipol Chanklan - 3D Artist
 
-## Contact
-Provide your contact information (e.g. email, Twitter, etc.) so that others can get in touch with you regarding your project.
+## Link
+[Youtube](https://youtu.be/ckGDauvEDzw)\
+[Itch.io](https://werasilz.itch.io/thorani-sooob)
