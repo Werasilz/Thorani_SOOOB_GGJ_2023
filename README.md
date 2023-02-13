@@ -46,4 +46,5 @@ Rapipol Chanklan - 3D Artist
 
 ## Link
 [Youtube](https://youtu.be/ckGDauvEDzw)\
-[Itch.io](https://werasilz.itch.io/thorani-sooob)
+[Itch.io](https://werasilz.itch.io/thorani-sooob)\
+[GlobalGameJam](https://globalgamejam.org/2023/games/%E0%B8%98%E0%B8%A3%E0%B8%93%E0%B8%B5%E0%B8%AA%E0%B8%B9%E0%B8%9A-7)
