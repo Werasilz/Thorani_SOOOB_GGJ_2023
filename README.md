@@ -1,6 +1,6 @@
 # Thorani SOOOB (ธรณีสูบ)
-a local co-op game, play as a monster roots to chase and eat people.\
-This game is submission to Global Game Jam 2023 - Popular Vote Award (Jam site Rangsit University)
+Local co-op game, play as a monster roots to chase and eat people.\
+This game is submission to Global Game Jam 2023 - Popular Vote Award (Jam site Rangsit University).
 
 ## Introduction
 This is a story about a cannibal forest where there is frequent news of tourists disappearing in this area. We will play the role of the cause of the problem, which will use roots to trap and eat people as food to survive, For survival, they will compete to catch the most prey.
@@ -12,10 +12,10 @@ This is a story about a cannibal forest where there is frequent news of tourists
 - Roots trap for catch people who walk into it.
 
 **How to play**\
-Use your skill to catch people and then pull them down to the ground to get scores
+Use your skill to catch people and then pull them down to the ground to get scores.
 
 **Controls**\
-Play with 2 Gamepad or Gamepad and Keyboard
+Play with 2 Gamepad or Gamepad and Keyboard.
 
 | Gamepad | Keyboard | Description |
 | ------------- | ------------- | ------------- |
